@@ -53,15 +53,6 @@
           </li>
           <li>
             <a
-              href="#blog"
-              [class.active]="activeSection() === 'blog'"
-              [attr.aria-current]="activeSection() === 'blog' ? 'page' : null"
-              (click)="closeMenu()"
-              >{{ 'HEADER.BLOG' | rkcTranslation }}</a
-            >
-          </li>
-          <li>
-            <a
               href="#contact"
               [class.active]="activeSection() === 'contact'"
               [attr.aria-current]="activeSection() === 'contact' ? 'page' : null"
@@ -77,11 +68,11 @@
           class="lang-btn"
           [class.active]="currentLang() === 'pt'"
           (click)="changeLanguage('pt')"
-          aria-label="Mudar para Português"
+          [attr.aria-label]="'HEADER.CHANGE_TO_PORTUGUESE' | rkcTranslation"
         >
           <img
             src="https://flagcdn.com/w40/br.png"
-            alt="Bandeira do Brasil"
+            [alt]="'HEADER.BRAZILIAN_FLAG_ALT' | rkcTranslation"
             width="24"
             height="24"
           />
@@ -90,9 +81,14 @@
           class="lang-btn"
           [class.active]="currentLang() === 'en'"
           (click)="changeLanguage('en')"
-          aria-label="Switch to English"
+          [attr.aria-label]="'HEADER.CHANGE_TO_ENGLISH' | rkcTranslation"
         >
-          <img src="https://flagcdn.com/w40/us.png" alt="USA Flag" width="24" height="24" />
+          <img
+            src="https://flagcdn.com/w40/us.png"
+            [alt]="'HEADER.US_FLAG_ALT' | rkcTranslation"
+            width="24"
+            height="24"
+          />
         </button>
       </div>
 

@@ -12,11 +12,14 @@
             <div class="card-visual" aria-hidden="true">
               <img
                 [src]="project.banner"
-                [alt]="'Interface do projeto ' + (project.title | rkcTranslation)"
+                [alt]="
+                  ('PROJECTS.INTERFACE_PROJECTS' | rkcTranslation) +
+                  ' ' +
+                  (project.title | rkcTranslation)
+                "
                 class="project-banner"
                 loading="lazy"
               />
-
               <div class="overlay" aria-hidden="true"></div>
               <div class="visual-accent" aria-hidden="true"></div>
             </div>
@@ -33,8 +36,14 @@
               <ul
                 class="tags-list"
                 role="list"
-                [attr.aria-label]="'Tecnologias usadas em ' + (project.title | rkcTranslation)"
+                [attr.aria-label]="
+                  ('PROJECTS.TECH_USED' | rkcTranslation) + ' ' + (project.title | rkcTranslation)
+                "
               >
+                @if (project.hasPost) {
+                  <li class="tag tag-post">Post</li>
+                }
+
                 @for (tag of project.tags; track tag) {
                   <li class="tag">{{ tag }}</li>
                 }
@@ -51,7 +60,8 @@
                   ('PROJECTS.EXPLORE' | rkcTranslation) +
                   ' ' +
                   (project.title | rkcTranslation) +
-                  ' (opens in new tab)'
+                  ' ' +
+                  ('PROJECTS.OPEN_IN_NEW_TAB' | rkcTranslation)
                 "
               >
                 {{ 'PROJECTS.EXPLORE' | rkcTranslation }}

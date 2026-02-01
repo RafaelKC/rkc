@@ -37,6 +37,9 @@ export interface SocialLink {
   platform: string;
   url: string;
   icon: string | LucideIconData;
+  useOnSeo?: boolean;
+  useOnContact?: boolean;
+  useOnLinks?: boolean;
 }
 
 export interface Project {
@@ -46,6 +49,7 @@ export interface Project {
   tags: string[];
   banner: string;
   url: string;
+  hasPost?: boolean;
 }
 
 export interface UserProfile {
@@ -56,6 +60,11 @@ export interface UserProfile {
   experience: ExperienceItem[];
   socialLinks: SocialLink[];
   projects: Project[];
+  contact: {
+    email: LocalizedText;
+    phone: LocalizedText;
+    location: LocalizedText;
+  };
 }
 
 export const USER_PROFILE: UserProfile = {
@@ -177,16 +186,25 @@ export const USER_PROFILE: UserProfile = {
       platform: 'LinkedIn',
       url: 'https://www.linkedin.com/in/rafael-chicovis/',
       icon: Linkedin,
+      useOnContact: true,
+      useOnLinks: true,
+      useOnSeo: true,
     },
     {
       platform: 'GitHub',
       url: 'https://github.com/RafaelKC',
       icon: Github,
+      useOnContact: true,
+      useOnLinks: true,
+      useOnSeo: true,
     },
     {
       platform: 'LinkTree',
       url: 'https://linktr.ee/rafael_chicovis',
       icon: TreesIcon,
+      useOnContact: true,
+      useOnLinks: true,
+      useOnSeo: true,
     },
   ],
   projects: [
@@ -220,6 +238,7 @@ export const USER_PROFILE: UserProfile = {
     },
     {
       id: 'ai-analysis',
+      hasPost: true,
       banner: 'assets/projects/ai-analytics.jpg',
       url: '#',
       title: {
@@ -233,4 +252,9 @@ export const USER_PROFILE: UserProfile = {
       tags: ['Python', 'ML.NET', 'Angular'],
     },
   ],
+  contact: {
+    email: { pt: 'contato@rafaelchicovis.com.br', en: 'contato@rafaelchicovis.com.br' },
+    phone: { pt: '(41) 99142-1020', en: '+55 (41) 99142-1020' },
+    location: { pt: 'Curitiba, PR - Brasil', en: 'Curitiba - Brazil' },
+  },
 };

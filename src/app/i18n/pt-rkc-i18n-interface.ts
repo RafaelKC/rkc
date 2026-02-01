@@ -6,10 +6,13 @@ export const PT_RKC_I18N: RkcI18n = {
     SKILLS: 'Skills',
     EXPERIENCE: 'Experiência',
     PROJECTS: 'Projetos',
-    BLOG: 'Blog',
     CONTACT: 'Contato',
     MENU_LABEL: 'Menu principal',
     LOGO_ALT: 'Voltar ao início',
+    CHANGE_TO_PORTUGUESE: 'Mudar para Português',
+    CHANGE_TO_ENGLISH: 'Change to English',
+    BRAZILIAN_FLAG_ALT: 'Bandeira do Brasil',
+    US_FLAG_ALT: 'Bandeira dos Estados Unidos',
   },
   HERO: {
     ROLE: 'Engenheiro de Software Full Stack',
@@ -27,6 +30,7 @@ export const PT_RKC_I18N: RkcI18n = {
   SKILLS: {
     SUBTITLE: '// SISTEMAS DE PROPULSÃO',
     TITLE: 'Arsenal Tecnológico',
+    TECH_LIST: 'Lista de tecnologias de',
   },
   ARIA: {
     SKIP_TO_CONTENT: 'Pular para o conteúdo',
@@ -34,10 +38,35 @@ export const PT_RKC_I18N: RkcI18n = {
   EXPERIENCE: {
     SUBTITLE: '// TRAJETÓRIA ORBITAL',
     TITLE: 'Experiência Profissional',
+    ACHIEVEMENTS: 'Principais conquistas em',
   },
   PROJECTS: {
     SUBTITLE: '// MISSÕES CONCLUÍDAS',
     TITLE: 'Projetos em Destaque',
     EXPLORE: 'Explorar',
+    OPEN_IN_NEW_TAB: '(abre em nova aba)',
+    TECH_USED: 'Tecnologias usadas em',
+    INTERFACE_PROJECTS: 'Interface do projeto',
+  },
+  CONTACT: {
+    SUBTITLE: '// CANAL DE COMUNICAÇÃO',
+    TITLE: 'Vamos Conversar?',
+    LABEL: 'Estabeleça Contato',
+    TEXT: 'Sempre aberto para discutir novos projetos, oportunidades ou simplesmente trocar ideias sobre o universo da tecnologia.',
+    NAME: 'NOME',
+    EMAIL: 'EMAIL',
+    MESSAGE: 'MENSAGEM',
+    BUTTON: 'ENVIAR TRANSMISSÃO',
+    PHONE_LABEL: 'TELEFONE',
+    LOCATION_LABEL: 'LOCALIZAÇÃO',
+    ARIA_LIST: 'Informações de contato direto',
+    SOCIAL_OPEN: 'Abrir perfil no',
+    FORM_LABEL: 'Formulário de envio de mensagem',
+    BUTTON_ARIA: 'Enviar mensagem de contato',
+  },
+  FOOTER: {
+    TEXT: 'Desenvolvido nas estrelas com',
+    CODE: 'e código limpo.',
+    COFFEE: 'café',
   },
 };

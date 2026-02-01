@@ -34,7 +34,11 @@
               <ul
                 class="achievements-list"
                 role="list"
-                [attr.aria-label]="'Principais conquistas em ' + (job.company | rkcTranslation)"
+                [attr.aria-label]="
+                  ('EXPERIENCE.ACHIEVEMENTS' | rkcTranslation) +
+                  ' ' +
+                  (job.company | rkcTranslation)
+                "
               >
                 @for (achievement of job.achievements; track $index) {
                   <li class="achievement-item">

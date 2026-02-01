@@ -23,7 +23,9 @@
           <ul
             class="tech-tags"
             role="list"
-            [attr.aria-label]="'Lista de tecnologias de ' + (group.title | rkcTranslation)"
+            [attr.aria-label]="
+              ('SKILLS.TECH_LIST' | rkcTranslation) + ' ' + (group.title | rkcTranslation)
+            "
           >
             @for (tech of group.techs; track tech) {
               <li class="tag">{{ tech }}</li>

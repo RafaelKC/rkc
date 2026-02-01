@@ -34,7 +34,6 @@ export class SeoService {
   }
 
   private updateMetaTags(): void {
-    const lang = this._translate.getCurrentLang() || 'en';
     const fullName = `${USER_PROFILE.firstName} ${USER_PROFILE.lastName}`;
 
     const currentRole = this.getText(USER_PROFILE.experience[0].title);
@@ -80,7 +79,9 @@ export class SeoService {
 
     const knowsAbout = [...new Set(USER_PROFILE.skills.flatMap((s) => s.techs))];
 
-    const socialUrls = USER_PROFILE.socialLinks.map((link) => link.url);
+    const socialUrls = USER_PROFILE.socialLinks
+      .filter((link) => link.useOnSeo)
+      .map((link) => link.url);
 
     const schema = {
       '@context': 'https://schema.org',

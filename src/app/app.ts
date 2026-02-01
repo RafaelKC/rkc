@@ -3,7 +3,9 @@ import { ThemeToggle } from '@rkc/components/theme-toggle/theme-toggle';
 import { RkcTranslationService } from '@rkc/services/rkc-translation-service';
 import { Header } from './components/header/header';
 import { SpaceBackground } from './components/space-background/space-background';
+import { Contact } from './pages/contact/contact';
 import { Experience } from './pages/experience/experience';
+import { Footer } from './pages/footer/footer';
 import { Home } from './pages/home/home';
 import { Projects } from './pages/projects/projects';
 import { Skills } from './pages/skills/skills';
@@ -20,6 +22,8 @@ import { RkcTranslationPipe } from './pipes/rkc-translation-pipe';
     RkcTranslationPipe,
     Experience,
     Projects,
+    Contact,
+    Footer,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
