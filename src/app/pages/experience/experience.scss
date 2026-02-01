@@ -1,0 +1,183 @@
+.experience-section {
+  padding: var(--section-padding) 0;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  .subtitle {
+    display: block;
+    font-family: var(--font-header);
+    color: var(--accent);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+  }
+}
+
+.timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 29px;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: color-mix(in srgb, var(--primary), transparent 80%);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--primary), transparent 90%);
+  }
+}
+
+.timeline-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 60px;
+  margin-bottom: 3rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  z-index: 1;
+
+  lucide-icon {
+    color: var(--primary);
+    filter: drop-shadow(0 0 5px var(--primary));
+    transition: all 0.3s ease;
+  }
+}
+
+.timeline-item.latest .timeline-marker lucide-icon {
+  color: var(--accent);
+  filter: drop-shadow(0 0 8px var(--accent));
+  transform: scale(1.1);
+}
+
+.glass-card {
+  background: color-mix(in srgb, var(--surface), transparent 40%);
+  border: 1px solid color-mix(in srgb, var(--primary), transparent 85%);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--primary), transparent 60%);
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--bg), transparent 20%);
+  }
+}
+
+
+.timeline-header {
+  margin-bottom: 1rem;
+
+  .date-range {
+    display: block;
+    font-family: var(--font-header);
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .job-title {
+    font-family: var(--font-header);
+    font-size: 1.5rem;
+    color: var(--text);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .company {
+    display: block;
+    font-size: 1rem;
+    color: var(--primary);
+    font-weight: 600;
+  }
+}
+
+.description {
+  font-size: 1rem;
+  color: color-mix(in srgb, var(--text), transparent 20%);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  .achievement-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: color-mix(in srgb, var(--text), transparent 30%);
+    line-height: 1.5;
+
+    .bullet-icon {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 19px;
+  }
+
+  .timeline-item {
+    padding-left: 50px;
+  }
+
+  .timeline-marker {
+    width: 40px;
+    height: 40px;
+
+    lucide-icon {
+      transform: scale(0.8);
+    }
+  }
+
+  .glass-card {
+    padding: 1.5rem;
+  }
+}

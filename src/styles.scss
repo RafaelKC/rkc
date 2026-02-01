@@ -1,1 +1,103 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: hsl(212, 94%, 68%);
+  --secondary: hsl(189, 85%, 47%);
+  --tertiary: hsl(257, 91%, 76%);
+  --accent: hsl(43, 95%, 67%);
+  --bg: hsl(229, 84%, 5%);
+  --text: hsl(210, 40%, 96%);
+  --surface: hsl(226, 47%, 11%);
+
+  --font-header: 'Michroma', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --header-height: 80px;
+  --section-padding: 15rem;
+  --container-max-width: 1400px;
+  --brand-gradient: linear-gradient(135deg, var(--primary), var(--tertiary));
+}
+
+:root[data-theme="light"] {
+  --primary: hsl(221, 83%, 53%);
+  --secondary: hsl(192, 91%, 36%);
+  --tertiary: hsl(263, 83%, 58%);
+  --accent: hsl(37, 92%, 50%);
+  --bg: hsl(204, 67%, 98%);
+  --text: hsl(224, 47%, 11%);
+  --surface: hsl(0, 0%, 100%);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-header);
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+}
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--primary), transparent 70%);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

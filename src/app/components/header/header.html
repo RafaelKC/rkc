@@ -1,0 +1,114 @@
+<header class="main-header" role="banner">
+  <div class="container">
+    <a href="#home" class="logo" [attr.aria-label]="'HEADER.LOGO_ALT' | rkcTranslation">
+      <span class="bracket" aria-hidden="true">&lt;</span>RKC<span
+        class="bracket"
+        aria-hidden="true"
+        >/&gt;</span
+      >
+    </a>
+
+    <div class="header-controls">
+      <nav
+        id="primary-navigation"
+        [class.open]="isMenuOpen()"
+        [attr.aria-label]="'HEADER.MENU_LABEL' | rkcTranslation"
+      >
+        <ul class="nav-links" role="list">
+          <li>
+            <a
+              href="#home"
+              [class.active]="activeSection() === 'home'"
+              [attr.aria-current]="activeSection() === 'home' ? 'page' : null"
+              (click)="closeMenu()"
+              >{{ 'HEADER.HOME' | rkcTranslation }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="#skills"
+              [class.active]="activeSection() === 'skills'"
+              [attr.aria-current]="activeSection() === 'skills' ? 'page' : null"
+              (click)="closeMenu()"
+              >{{ 'HEADER.SKILLS' | rkcTranslation }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="#experience"
+              [class.active]="activeSection() === 'experience'"
+              [attr.aria-current]="activeSection() === 'experience' ? 'page' : null"
+              (click)="closeMenu()"
+              >{{ 'HEADER.EXPERIENCE' | rkcTranslation }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="#projects"
+              [class.active]="activeSection() === 'projects'"
+              [attr.aria-current]="activeSection() === 'projects' ? 'page' : null"
+              (click)="closeMenu()"
+              >{{ 'HEADER.PROJECTS' | rkcTranslation }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="#blog"
+              [class.active]="activeSection() === 'blog'"
+              [attr.aria-current]="activeSection() === 'blog' ? 'page' : null"
+              (click)="closeMenu()"
+              >{{ 'HEADER.BLOG' | rkcTranslation }}</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              [class.active]="activeSection() === 'contact'"
+              [attr.aria-current]="activeSection() === 'contact' ? 'page' : null"
+              (click)="closeMenu()"
+              >{{ 'HEADER.CONTACT' | rkcTranslation }}</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <div class="lang-switcher">
+        <button
+          class="lang-btn"
+          [class.active]="currentLang() === 'pt'"
+          (click)="changeLanguage('pt')"
+          aria-label="Mudar para Português"
+        >
+          <img
+            src="https://flagcdn.com/w40/br.png"
+            alt="Bandeira do Brasil"
+            width="24"
+            height="24"
+          />
+        </button>
+        <button
+          class="lang-btn"
+          [class.active]="currentLang() === 'en'"
+          (click)="changeLanguage('en')"
+          aria-label="Switch to English"
+        >
+          <img src="https://flagcdn.com/w40/us.png" alt="USA Flag" width="24" height="24" />
+        </button>
+      </div>
+
+      <button
+        class="menu-toggle"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="isMenuOpen()"
+        aria-controls="primary-navigation"
+        [attr.aria-label]="'HEADER.MENU_LABEL' | rkcTranslation"
+      >
+        <lucide-icon
+          [name]="isMenuOpen() ? CloseIcon : MenuIcon"
+          size="24"
+          aria-hidden="true"
+        ></lucide-icon>
+      </button>
+    </div>
+  </div>
+</header>

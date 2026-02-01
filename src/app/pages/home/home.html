@@ -1,0 +1,41 @@
+<section id="home" class="hero-section" aria-labelledby="hero-title">
+  <div class="container">
+    <div class="hero-content">
+      @if (isAvailable()) {
+        <div class="status-badge available" role="status">
+          <span class="dot" aria-hidden="true"></span>
+          {{ 'HERO.AVAILABLE_BADGE' | translate }}
+        </div>
+      }
+
+      <h1 id="hero-title" class="hero-title">
+        {{ USER_PROFILE.firstName }} <span class="gradient-text">{{ USER_PROFILE.lastName }}</span>
+      </h1>
+
+      <h2 class="hero-role">
+        {{ 'HERO.ROLE' | translate }}
+      </h2>
+
+      <p class="hero-description">
+        {{ 'HERO.DESC_START' | translate }}
+        <br class="desktop-only" aria-hidden="true" />
+        <strong>
+          {{ 'HERO.YEARS_TEXT' | translate: { years: yearsOfExperience() } }}
+        </strong>
+        {{ 'HERO.DESC_END' | translate }}
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" (click)="scrollTo('contact')">
+          {{ 'HERO.BTN_CONTACT' | translate }}
+          <lucide-icon [name]="ArrowRight" size="18" aria-hidden="true"></lucide-icon>
+        </button>
+
+        <button class="btn btn-outline" (click)="scrollTo('projects')">
+          {{ 'HERO.BTN_PROJECTS' | translate }}
+          <lucide-icon [name]="CodeIcon" size="18" aria-hidden="true"></lucide-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

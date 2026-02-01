@@ -1,0 +1,224 @@
+$mobile-breakpoint: 968px;
+
+:host,
+.space-scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  background-image:
+    radial-gradient(1px 1px at 25% 10%, var(--text), transparent),
+    radial-gradient(2px 2px at 50% 40%, var(--text), transparent),
+    radial-gradient(1px 1px at 75% 15%, var(--text), transparent),
+    radial-gradient(2px 2px at 10% 85%, var(--text), transparent),
+    radial-gradient(1.5px 1.5px at 85% 70%, var(--text), transparent);
+}
+
+.layer-1 {
+  background-size: 200px 200px;
+  animation: twinkle 60s ease-in-out infinite;
+  opacity: 0.5;
+}
+
+.layer-2 {
+  background-size: 310px 350px;
+  animation: twinkle 120s ease-in-out infinite 1s;
+  opacity: 0.3;
+}
+
+.layer-3 {
+  background-size: 500px 500px;
+  animation: twinkle 180s ease-in-out infinite 2s;
+  opacity: 0.1;
+}
+
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+  animation: float-nebula 20s ease-in-out infinite;
+}
+
+.nebula-blue {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary), transparent 70%), transparent 70%);
+  top: -200px;
+  left: -100px;
+}
+
+.nebula-purple {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--tertiary), transparent 70%), transparent 70%);
+  bottom: -100px;
+  right: -50px;
+  animation-delay: -5s;
+}
+
+.hero-planet-container {
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 350px;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: float-planet 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+.planet-glow {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary), transparent 85%), transparent 70%);
+  filter: blur(30px);
+}
+
+.planet-core {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%,
+      color-mix(in srgb, var(--primary), transparent 60%) 0%,
+      color-mix(in srgb, var(--secondary), transparent 90%) 40%,
+      color-mix(in srgb, var(--tertiary), transparent 80%) 100%);
+  backdrop-filter: blur(5px);
+  border: 1px solid color-mix(in srgb, var(--text), transparent 90%);
+  box-shadow:
+    inset 0 0 30px color-mix(in srgb, var(--primary), transparent 70%),
+    inset -15px -15px 40px color-mix(in srgb, #000, transparent 50%),
+    0 0 60px color-mix(in srgb, var(--primary), transparent 85%);
+  position: relative;
+  overflow: hidden;
+}
+
+.planet-core::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--secondary), transparent 70%), transparent 60%);
+  opacity: 0.3;
+  animation: rotate-energy 20s linear infinite;
+}
+
+.planet-orbit {
+  position: absolute;
+  top: 50%;
+  left: -50%;
+  width: 200%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%);
+  transform: translateY(-50%) rotate(-15deg);
+  opacity: 0.3;
+  filter: drop-shadow(0 0 5px var(--primary));
+}
+
+.planet-orbit::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--secondary), transparent 60%), transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0.4;
+  filter: blur(10px);
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.2;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes float-nebula {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(50px, 30px) scale(1.1);
+  }
+}
+
+@keyframes float-planet {
+
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0);
+  }
+
+  50% {
+    transform: translateY(-54%) translateX(-15px);
+  }
+}
+
+@keyframes rotate-energy {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .stars,
+  .nebula,
+  .hero-planet-container,
+  .planet-core::after {
+    animation: none !important;
+  }
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .hero-planet-container {
+    display: none;
+  }
+
+  .nebula-blue {
+    width: 300px;
+    height: 300px;
+  }
+
+  .nebula-purple {
+    width: 250px;
+    height: 250px;
+  }
+}
