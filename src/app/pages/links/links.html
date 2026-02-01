@@ -1,0 +1,14 @@
+<section class="links-section">
+  <div class="container">
+    <div class="links-grid">
+      @for (link of links(); track link.platform) {
+        <a [href]="link.url" target="_blank" rel="noopener noreferrer" class="link-card">
+          <div class="icon-wrapper">
+            <lucide-icon [name]="link.icon" size="20"></lucide-icon>
+          </div>
+          <span class="platform-name">{{ link.platform }}</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>

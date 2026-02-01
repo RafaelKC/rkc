@@ -1,30 +1,15 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { ThemeToggle } from '@rkc/components/theme-toggle/theme-toggle';
+import { RkcTranslationPipe } from '@rkc/pipes/rkc-translation-pipe';
 import { RkcTranslationService } from '@rkc/services/rkc-translation-service';
 import { Header } from './components/header/header';
 import { SpaceBackground } from './components/space-background/space-background';
-import { Contact } from './pages/contact/contact';
-import { Experience } from './pages/experience/experience';
 import { Footer } from './pages/footer/footer';
-import { Home } from './pages/home/home';
-import { Projects } from './pages/projects/projects';
-import { Skills } from './pages/skills/skills';
-import { RkcTranslationPipe } from './pipes/rkc-translation-pipe';
 
 @Component({
   selector: 'rkc-app-root',
-  imports: [
-    ThemeToggle,
-    SpaceBackground,
-    Header,
-    Home,
-    Skills,
-    RkcTranslationPipe,
-    Experience,
-    Projects,
-    Contact,
-    Footer,
-  ],
+  imports: [ThemeToggle, SpaceBackground, Header, RouterOutlet, RkcTranslationPipe, Footer],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

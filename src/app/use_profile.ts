@@ -203,7 +203,7 @@ export const USER_PROFILE: UserProfile = {
       url: 'https://linktr.ee/rafael_chicovis',
       icon: TreesIcon,
       useOnContact: true,
-      useOnLinks: true,
+      useOnLinks: false,
       useOnSeo: true,
     },
   ],
