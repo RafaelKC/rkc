@@ -13,6 +13,8 @@ export const PT_RKC_I18N: RkcI18n = {
     CHANGE_TO_ENGLISH: 'Change to English',
     BRAZILIAN_FLAG_ALT: 'Bandeira do Brasil',
     US_FLAG_ALT: 'Bandeira dos Estados Unidos',
+    DOWNLOAD_CV: 'Currículo',
+    LINKS: 'Links',
   },
   HERO: {
     ROLE: 'Engenheiro de Software Full Stack',

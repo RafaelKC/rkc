@@ -16,6 +16,8 @@ export interface RkcI18n extends TranslationObject {
     CHANGE_TO_ENGLISH: string;
     BRAZILIAN_FLAG_ALT: string;
     US_FLAG_ALT: string;
+    DOWNLOAD_CV: string;
+    LINKS: string;
   };
   HERO: {
     ROLE: string;

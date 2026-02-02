@@ -60,6 +60,16 @@
               >{{ 'HEADER.CONTACT' | rkcTranslation }}</a
             >
           </li>
+          <li>
+            <a routerLink="/links" (click)="closeMenu()">
+              {{ 'HEADER.LINKS' | rkcTranslation }}
+            </a>
+          </li>
+          <li class="nav-cta">
+            <a [href]="cvUrl()" download class="cv-button" (click)="closeMenu()">
+              {{ 'HEADER.DOWNLOAD_CV' | rkcTranslation }}
+            </a>
+          </li>
         </ul>
       </nav>
 

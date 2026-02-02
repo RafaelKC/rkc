@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   afterNextRender,
   ChangeDetectionStrategy,
@@ -10,11 +11,12 @@ import {
 
 import { RkcTranslationPipe } from '@rkc/pipes/rkc-translation-pipe';
 import { RkcTranslationService } from '@rkc/services/rkc-translation-service';
+import { USER_PROFILE } from '@rkc/use_profile';
 import { LucideAngularModule, Menu, X } from 'lucide-angular';
 
 @Component({
   selector: 'rkc-header',
-  imports: [LucideAngularModule, RkcTranslationPipe],
+  imports: [LucideAngularModule, RkcTranslationPipe, CommonModule],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,6 +30,11 @@ export class Header implements OnDestroy {
   public hasScrolled = signal<boolean>(false);
 
   public readonly currentLang = computed(() => this._translationService?.currentLang());
+
+  public readonly cvUrl = computed(() => {
+    const lang = this.currentLang() as 'pt' | 'en';
+    return USER_PROFILE.cv[lang];
+  });
 
   private readonly _translationService = inject(RkcTranslationService);
   private _observer: IntersectionObserver | null = null;

@@ -13,6 +13,8 @@ export const EN_RKC_I18N: RkcI18n = {
     CHANGE_TO_ENGLISH: 'Change to English',
     BRAZILIAN_FLAG_ALT: 'Brazilian flag',
     US_FLAG_ALT: 'USA flag',
+    DOWNLOAD_CV: 'Resume',
+    LINKS: 'Links',
   },
   HERO: {
     ROLE: 'Full Stack Software Engineer',
@@ -62,7 +64,7 @@ export const EN_RKC_I18N: RkcI18n = {
     ARIA_LIST: 'Direct contact information',
     SOCIAL_OPEN: 'Open profile on',
     FORM_LABEL: 'Contact form',
-    BUTTON_ARIA: 'Send contact message'
+    BUTTON_ARIA: 'Send contact message',
   },
   FOOTER: {
     TEXT: 'Developed in the stars with',

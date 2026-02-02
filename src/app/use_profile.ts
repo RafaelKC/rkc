@@ -65,6 +65,7 @@ export interface UserProfile {
     phone: LocalizedText;
     location: LocalizedText;
   };
+  cv: LocalizedText;
 }
 
 export const USER_PROFILE: UserProfile = {
@@ -256,5 +257,9 @@ export const USER_PROFILE: UserProfile = {
     email: { pt: 'contato@rafaelchicovis.com.br', en: 'contato@rafaelchicovis.com.br' },
     phone: { pt: '(41) 99142-1020', en: '+55 (41) 99142-1020' },
     location: { pt: 'Curitiba, PR - Brasil', en: 'Curitiba - Brazil' },
+  },
+  cv: {
+    pt: 'cv/cv-pt.pdf',
+    en: 'cv/cv-en.pdf',
   },
 };
