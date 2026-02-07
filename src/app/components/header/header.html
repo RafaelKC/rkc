@@ -18,8 +18,7 @@
           <li>
             <a
               href="#home"
-              [class.active]="activeSection() === 'home'"
-              [attr.aria-current]="activeSection() === 'home' ? 'page' : null"
+              [class.active]="isHomePage() && activeSection() === 'home'"
               (click)="closeMenu()"
               >{{ 'HEADER.HOME' | rkcTranslation }}</a
             >
@@ -27,8 +26,7 @@
           <li>
             <a
               href="#skills"
-              [class.active]="activeSection() === 'skills'"
-              [attr.aria-current]="activeSection() === 'skills' ? 'page' : null"
+              [class.active]="isHomePage() && activeSection() === 'skills'"
               (click)="closeMenu()"
               >{{ 'HEADER.SKILLS' | rkcTranslation }}</a
             >
@@ -36,8 +34,7 @@
           <li>
             <a
               href="#experience"
-              [class.active]="activeSection() === 'experience'"
-              [attr.aria-current]="activeSection() === 'experience' ? 'page' : null"
+              [class.active]="isHomePage() && activeSection() === 'experience'"
               (click)="closeMenu()"
               >{{ 'HEADER.EXPERIENCE' | rkcTranslation }}</a
             >
@@ -45,8 +42,7 @@
           <li>
             <a
               href="#projects"
-              [class.active]="activeSection() === 'projects'"
-              [attr.aria-current]="activeSection() === 'projects' ? 'page' : null"
+              [class.active]="isHomePage() && activeSection() === 'projects'"
               (click)="closeMenu()"
               >{{ 'HEADER.PROJECTS' | rkcTranslation }}</a
             >
@@ -54,19 +50,20 @@
           <li>
             <a
               href="#contact"
-              [class.active]="activeSection() === 'contact'"
-              [attr.aria-current]="activeSection() === 'contact' ? 'page' : null"
+              [class.active]="isHomePage() && activeSection() === 'contact'"
               (click)="closeMenu()"
               >{{ 'HEADER.CONTACT' | rkcTranslation }}</a
             >
           </li>
+
           <li>
-            <a routerLink="/links" (click)="closeMenu()">
+            <a routerLink="/links" routerLinkActive="active" (click)="closeMenu()">
               {{ 'HEADER.LINKS' | rkcTranslation }}
             </a>
           </li>
+
           <li class="nav-cta">
-            <a [href]="cvUrl()" download class="cv-button" (click)="closeMenu()">
+            <a [href]="cvUrl()" download class="cv-button">
               {{ 'HEADER.DOWNLOAD_CV' | rkcTranslation }}
             </a>
           </li>

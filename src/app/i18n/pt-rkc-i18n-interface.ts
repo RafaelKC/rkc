@@ -13,7 +13,7 @@ export const PT_RKC_I18N: RkcI18n = {
     CHANGE_TO_ENGLISH: 'Change to English',
     BRAZILIAN_FLAG_ALT: 'Bandeira do Brasil',
     US_FLAG_ALT: 'Bandeira dos Estados Unidos',
-    DOWNLOAD_CV: 'Currículo',
+    DOWNLOAD_CV: 'Baixar currículo',
     LINKS: 'Links',
   },
   HERO: {

@@ -10,34 +10,9 @@
   align-items: start;
 }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 4rem;
-
-  .subtitle {
-    display: block;
-    font-family: var(--font-header);
-    color: var(--accent);
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-  }
-
-  .title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    background: var(--brand-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-transform: uppercase;
-    font-weight: 900;
-  }
-}
-
 .info-title {
   font-family: var(--font-header);
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 900;
   text-transform: uppercase;
   background: var(--brand-gradient);

@@ -101,3 +101,33 @@ h2 {
     scroll-behavior: auto !important;
   }
 }
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  .subtitle {
+    display: block;
+    font-family: var(--font-header);
+    color: var(--accent);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+
+
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+
+    filter: drop-shadow(0 0 30px color-mix(in srgb, var(--primary), transparent 80%));
+  }
+}

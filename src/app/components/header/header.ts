@@ -4,19 +4,23 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
   inject,
   OnDestroy,
   signal,
 } from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 
 import { RkcTranslationPipe } from '@rkc/pipes/rkc-translation-pipe';
 import { RkcTranslationService } from '@rkc/services/rkc-translation-service';
 import { USER_PROFILE } from '@rkc/use_profile';
 import { LucideAngularModule, Menu, X } from 'lucide-angular';
+import { filter, map } from 'rxjs';
 
 @Component({
   selector: 'rkc-header',
-  imports: [LucideAngularModule, RkcTranslationPipe, CommonModule],
+  imports: [LucideAngularModule, RkcTranslationPipe, CommonModule, RouterModule],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,9 +40,25 @@ export class Header implements OnDestroy {
     return USER_PROFILE.cv[lang];
   });
 
+  public readonly isHomePage = computed(() => {
+    const url = (this.currentRoute() as string) || '';
+    return url === '/' || url === '/home' || url.startsWith('/#');
+  });
+
   private readonly _translationService = inject(RkcTranslationService);
+  private readonly _router = inject(Router);
+  private readonly _destroyRef = inject(DestroyRef);
+
   private _observer: IntersectionObserver | null = null;
   private _scrollListener: (() => void) | null = null;
+
+  private readonly currentRoute = toSignal(
+    this._router.events.pipe(
+      takeUntilDestroyed(this._destroyRef),
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this._router.url),
+    ),
+  );
 
   constructor() {
     afterNextRender(() => {
@@ -98,7 +118,7 @@ export class Header implements OnDestroy {
   private setupIntersectionObserver(): void {
     const options = {
       root: null,
-      rootMargin: '-50% 0px -50% 0px',
+      rootMargin: '-20% 0px -20% 0px',
       threshold: 0,
     };
 

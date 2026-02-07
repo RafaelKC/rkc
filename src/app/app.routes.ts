@@ -5,4 +5,5 @@ import { MainLayout } from '@rkc/pages/main-layout/main-layout';
 export const routes: Routes = [
   { path: '', component: MainLayout },
   { path: 'links', component: Links },
+  { path: '**', redirectTo: '' },
 ];

@@ -2,11 +2,11 @@ import {
   Database,
   Github,
   Linkedin,
+  LinkIcon,
   LucideIconData,
   Monitor,
   Rocket,
   Star,
-  TreesIcon,
 } from 'lucide-angular';
 
 export interface LocalizedText {
@@ -200,9 +200,9 @@ export const USER_PROFILE: UserProfile = {
       useOnSeo: true,
     },
     {
-      platform: 'LinkTree',
-      url: 'https://linktr.ee/rafael_chicovis',
-      icon: TreesIcon,
+      platform: 'Links',
+      url: '/links',
+      icon: LinkIcon,
       useOnContact: true,
       useOnLinks: false,
       useOnSeo: true,
