@@ -4,22 +4,18 @@
       <span class="subtitle">{{ 'SKILLS.SUBTITLE' | rkcTranslation }}</span>
       <h2 id="skills-title" class="title">{{ 'SKILLS.TITLE' | rkcTranslation }}</h2>
     </div>
-
     <ul class="skills-grid" role="list">
       @for (group of USER_PROFILE.skills; track group.title.en) {
         <li class="skill-card">
           <div class="card-icon" aria-hidden="true">
             <lucide-icon [name]="group.icon" size="32"></lucide-icon>
           </div>
-
           <h3 class="card-title">
             {{ group.title | rkcTranslation }}
           </h3>
-
           <p class="card-desc">
             {{ group.description | rkcTranslation }}
           </p>
-
           <ul
             class="tech-tags"
             role="list"

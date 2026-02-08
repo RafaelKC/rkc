@@ -1,6 +1,5 @@
 .experience-section {
   padding: var(--section-padding) 0;
-  position: relative;
 }
 
 .timeline {
@@ -20,12 +19,6 @@
   }
 }
 
-.timeline-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
 .timeline-item {
   position: relative;
   padding-left: 60px;
@@ -33,6 +26,12 @@
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  &.latest .timeline-marker lucide-icon {
+    color: var(--accent);
+    filter: drop-shadow(0 0 8px var(--accent));
+    transform: scale(1.1);
   }
 }
 
@@ -42,39 +41,17 @@
   top: 0;
   width: 60px;
   height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: var(--bg);
   z-index: 1;
 
   lucide-icon {
-    color: var(--primary);
-    filter: drop-shadow(0 0 5px var(--primary));
     transition: all 0.3s ease;
   }
 }
 
-.timeline-item.latest .timeline-marker lucide-icon {
-  color: var(--accent);
-  filter: drop-shadow(0 0 8px var(--accent));
-  transform: scale(1.1);
-}
-
-.glass-card {
-  background: color-mix(in srgb, var(--surface), transparent 40%);
-  border: 1px solid color-mix(in srgb, var(--primary), transparent 85%);
-  border-radius: 16px;
+.timeline-content {
   padding: 2rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-color: color-mix(in srgb, var(--primary), transparent 60%);
-    box-shadow: 0 10px 30px color-mix(in srgb, var(--bg), transparent 20%);
-  }
 }
-
 
 .timeline-header {
   margin-bottom: 1rem;
@@ -90,9 +67,7 @@
   }
 
   .job-title {
-    font-family: var(--font-header);
     font-size: 1.5rem;
-    color: var(--text);
     margin: 0 0 0.25rem 0;
   }
 
@@ -106,15 +81,10 @@
 
 .description {
   font-size: 1rem;
-  color: color-mix(in srgb, var(--text), transparent 20%);
-  line-height: 1.6;
   margin-bottom: 1.5rem;
 }
 
 .achievements-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -124,7 +94,6 @@
     align-items: flex-start;
     gap: 0.75rem;
     font-size: 0.95rem;
-    color: color-mix(in srgb, var(--text), transparent 30%);
     line-height: 1.5;
 
     .bullet-icon {
@@ -134,6 +103,10 @@
     }
   }
 }
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
 
 @media (max-width: 768px) {
   .timeline::before {
@@ -153,7 +126,7 @@
     }
   }
 
-  .glass-card {
+  .timeline-content {
     padding: 1.5rem;
   }
 }

@@ -15,7 +15,6 @@
   gap: 2rem;
   max-width: 900px;
   margin: 0 auto;
-
   animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   opacity: 0;
   transform: translateY(20px);
@@ -27,9 +26,6 @@
   gap: 0.6rem;
   padding: 0.5rem 1.2rem;
   border-radius: 50px;
-  background: color-mix(in srgb, var(--accent), transparent 90%);
-  border: 1px solid color-mix(in srgb, var(--accent), transparent 60%);
-  color: var(--accent);
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -53,14 +49,6 @@
   line-height: 1;
   letter-spacing: -2px;
   margin-bottom: 0.5rem;
-
-  .gradient-text {
-    background: var(--brand-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    filter: drop-shadow(0 0 30px color-mix(in srgb, var(--primary), transparent 70%));
-  }
 }
 
 .hero-role {
@@ -84,12 +72,6 @@
     color: var(--text);
     font-weight: 700;
   }
-
-  @media (max-width: 768px) {
-    .desktop-only {
-      display: none;
-    }
-  }
 }
 
 .hero-actions {
@@ -104,31 +86,13 @@
     height: 56px;
     padding: 0 2.5rem;
     border-radius: 8px;
-    font-family: var(--font-header);
     font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    border: none;
     line-height: 1;
     position: relative;
 
     lucide-icon {
       margin-left: 0.75rem;
       transform: translateY(1px);
-    }
-
-    &.btn-primary {
-      background: var(--brand-gradient);
-      color: white;
-      box-shadow: 0 10px 30px color-mix(in srgb, var(--primary), transparent 70%);
-
-      &:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 40px color-mix(in srgb, var(--primary), transparent 50%);
-      }
     }
 
     &.btn-outline {
@@ -145,29 +109,9 @@
   }
 }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent), transparent 70%);
-  }
-
-  70% {
-    opacity: 1;
-    box-shadow: 0 0 0 10px transparent;
-  }
-
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 transparent;
-  }
-}
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
 
 @media (max-width: 768px) {
   .hero-actions {

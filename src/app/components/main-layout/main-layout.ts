@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Contact } from '../contact/contact';
-import { Experience } from '../experience/experience';
-import { Home } from '../home/home';
-import { Projects } from '../projects/projects';
-import { Skills } from '../skills/skills';
+import { Contact } from '@rkc/pages/contact/contact';
+import { Experience } from '@rkc/pages/experience/experience';
+import { Home } from '@rkc/pages/home/home';
+import { Projects } from '@rkc/pages/projects/projects';
+import { Skills } from '@rkc/pages/skills/skills';
 
 @Component({
   selector: 'rkc-main-layout',

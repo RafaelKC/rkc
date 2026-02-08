@@ -78,9 +78,6 @@ $mobile-breakpoint: 968px;
   transform: translateY(-50%);
   width: 350px;
   height: 350px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   animation: float-planet 8s ease-in-out infinite;
   z-index: 1;
 }
@@ -110,18 +107,18 @@ $mobile-breakpoint: 968px;
     0 0 60px color-mix(in srgb, var(--primary), transparent 85%);
   position: relative;
   overflow: hidden;
-}
 
-.planet-core::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, color-mix(in srgb, var(--secondary), transparent 70%), transparent 60%);
-  opacity: 0.3;
-  animation: rotate-energy 20s linear infinite;
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, color-mix(in srgb, var(--secondary), transparent 70%), transparent 60%);
+    opacity: 0.3;
+    animation: rotate-energy 20s linear infinite;
+  }
 }
 
 .planet-orbit {
@@ -134,78 +131,24 @@ $mobile-breakpoint: 968px;
   transform: translateY(-50%) rotate(-15deg);
   opacity: 0.3;
   filter: drop-shadow(0 0 5px var(--primary));
-}
 
-.planet-orbit::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle, color-mix(in srgb, var(--secondary), transparent 60%), transparent 70%);
-  transform: translate(-50%, -50%);
-  opacity: 0.4;
-  filter: blur(10px);
-}
-
-@keyframes twinkle {
-
-  0%,
-  100% {
-    opacity: 0.8;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.2;
-    transform: scale(1.1);
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--secondary), transparent 60%), transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0.4;
+    filter: blur(10px);
   }
 }
 
-@keyframes float-nebula {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  50% {
-    transform: translate(50px, 30px) scale(1.1);
-  }
-}
-
-@keyframes float-planet {
-
-  0%,
-  100% {
-    transform: translateY(-50%) translateX(0);
-  }
-
-  50% {
-    transform: translateY(-54%) translateX(-15px);
-  }
-}
-
-@keyframes rotate-energy {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  .stars,
-  .nebula,
-  .hero-planet-container,
-  .planet-core::after {
-    animation: none !important;
-  }
-}
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
 
 @media (max-width: $mobile-breakpoint) {
   .hero-planet-container {

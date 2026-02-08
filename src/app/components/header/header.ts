@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import {
-  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -29,7 +28,6 @@ export class Header implements OnDestroy {
   public readonly MenuIcon = Menu;
   public readonly CloseIcon = X;
 
-  public activeSection = signal<string>('home');
   public isMenuOpen = signal<boolean>(false);
   public hasScrolled = signal<boolean>(false);
 
@@ -38,11 +36,6 @@ export class Header implements OnDestroy {
   public readonly cvUrl = computed(() => {
     const lang = this.currentLang() as 'pt' | 'en';
     return USER_PROFILE.cv[lang];
-  });
-
-  public readonly isHomePage = computed(() => {
-    const url = (this.currentRoute() as string) || '';
-    return url === '/' || url === '/home' || url.startsWith('/#');
   });
 
   private readonly _translationService = inject(RkcTranslationService);
@@ -59,13 +52,6 @@ export class Header implements OnDestroy {
       map(() => this._router.url),
     ),
   );
-
-  constructor() {
-    afterNextRender(() => {
-      this.setupIntersectionObserver();
-      this.setupScrollListener();
-    });
-  }
 
   public ngOnDestroy(): void {
     this._observer?.disconnect();
@@ -101,41 +87,5 @@ export class Header implements OnDestroy {
 
   public closeMenu() {
     this.isMenuOpen.set(false);
-  }
-
-  private setupScrollListener(): void {
-    this._scrollListener = () => {
-      this.hasScrolled.set(window.scrollY > 50);
-      const isAtBottom =
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
-      if (isAtBottom) {
-        this.activeSection.set('contact');
-      }
-    };
-    window.addEventListener('scroll', this._scrollListener);
-  }
-
-  private setupIntersectionObserver(): void {
-    const options = {
-      root: null,
-      rootMargin: '-20% 0px -20% 0px',
-      threshold: 0,
-    };
-
-    this._observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const isAtBottom =
-            window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
-          if (!isAtBottom) {
-            this.activeSection.set(entry.target.id);
-          }
-        }
-      });
-    }, options);
-
-    document.querySelectorAll('section[id]').forEach((section) => {
-      this._observer?.observe(section);
-    });
   }
 }

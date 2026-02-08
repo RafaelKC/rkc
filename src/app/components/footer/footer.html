@@ -3,12 +3,9 @@
     <div class="footer-content">
       <p>
         <span aria-label="Copyright">©</span>
-        {{ currentYear }} Rafael Chicovis.
-
+        {{ currentYear }} {{ USER_PROFILE.firstName }} {{ USER_PROFILE.lastName }}.
         {{ 'FOOTER.TEXT' | rkcTranslation }}
-
         <span role="img" [aria-label]="'FOOTER.COFFEE' | rkcTranslation">☕</span>
-
         {{ 'FOOTER.CODE' | rkcTranslation }}
       </p>
     </div>

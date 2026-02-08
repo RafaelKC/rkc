@@ -16,44 +16,21 @@
       >
         <ul class="nav-links" role="list">
           <li>
-            <a
-              href="#home"
-              [class.active]="isHomePage() && activeSection() === 'home'"
-              (click)="closeMenu()"
-              >{{ 'HEADER.HOME' | rkcTranslation }}</a
-            >
+            <a href="#home" (click)="closeMenu()">{{ 'HEADER.HOME' | rkcTranslation }}</a>
           </li>
           <li>
-            <a
-              href="#skills"
-              [class.active]="isHomePage() && activeSection() === 'skills'"
-              (click)="closeMenu()"
-              >{{ 'HEADER.SKILLS' | rkcTranslation }}</a
-            >
+            <a href="#skills" (click)="closeMenu()">{{ 'HEADER.SKILLS' | rkcTranslation }}</a>
           </li>
           <li>
-            <a
-              href="#experience"
-              [class.active]="isHomePage() && activeSection() === 'experience'"
-              (click)="closeMenu()"
-              >{{ 'HEADER.EXPERIENCE' | rkcTranslation }}</a
-            >
+            <a href="#experience" (click)="closeMenu()">{{
+              'HEADER.EXPERIENCE' | rkcTranslation
+            }}</a>
           </li>
           <li>
-            <a
-              href="#projects"
-              [class.active]="isHomePage() && activeSection() === 'projects'"
-              (click)="closeMenu()"
-              >{{ 'HEADER.PROJECTS' | rkcTranslation }}</a
-            >
+            <a href="#projects" (click)="closeMenu()">{{ 'HEADER.PROJECTS' | rkcTranslation }}</a>
           </li>
           <li>
-            <a
-              href="#contact"
-              [class.active]="isHomePage() && activeSection() === 'contact'"
-              (click)="closeMenu()"
-              >{{ 'HEADER.CONTACT' | rkcTranslation }}</a
-            >
+            <a href="#contact" (click)="closeMenu()">{{ 'HEADER.CONTACT' | rkcTranslation }}</a>
           </li>
 
           <li>

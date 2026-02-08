@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
+import { MainLayout } from '@rkc/components/main-layout/main-layout';
 import { Links } from '@rkc/pages/links/links';
-import { MainLayout } from '@rkc/pages/main-layout/main-layout';
 
 export const routes: Routes = [
   { path: '', component: MainLayout },

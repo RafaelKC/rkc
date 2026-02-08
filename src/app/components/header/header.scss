@@ -6,8 +6,6 @@ $mobile-breakpoint: 968px;
   width: 100%;
   height: var(--header-height);
   z-index: 2000;
-  display: flex;
-  align-items: center;
   background: color-mix(in srgb, var(--bg), transparent 20%);
   backdrop-filter: blur(15px);
   border-bottom: 1px solid color-mix(in srgb, var(--primary), transparent 85%);
@@ -16,10 +14,7 @@ $mobile-breakpoint: 968px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 0 2rem;
+    height: 100%;
   }
 }
 
@@ -32,16 +27,10 @@ $mobile-breakpoint: 968px;
 .logo {
   display: inline-flex;
   align-items: center;
-  font-family: var(--font-header);
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   font-weight: 900;
   text-decoration: none;
   letter-spacing: 1px;
-  background: var(--brand-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--primary), transparent 60%));
   transition: filter 0.3s ease;
 
   &:hover {
@@ -56,7 +45,6 @@ $mobile-breakpoint: 968px;
 .nav-links {
   display: flex;
   gap: clamp(1rem, 2vw, 2.5rem);
-  list-style: none;
   align-items: center;
 
   a {
@@ -85,8 +73,7 @@ $mobile-breakpoint: 968px;
       transition: width 0.3s ease;
     }
 
-    &:hover,
-    &.active {
+    &:hover {
       opacity: 1;
       color: var(--primary);
       text-shadow: 0 0 8px color-mix(in srgb, var(--primary), transparent 50%);
@@ -98,14 +85,10 @@ $mobile-breakpoint: 968px;
   }
 
   .cv-button {
-    background: var(--brand-gradient);
     padding: 0.5rem clamp(0.75rem, 1.5vw, 1.25rem);
     border-radius: 8px;
     color: white !important;
-    font-weight: 700;
     font-size: clamp(0.65rem, 1vw, 0.75rem);
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px color-mix(in srgb, var(--primary), transparent 70%);
     white-space: nowrap;
 
     &:hover {
@@ -136,7 +119,6 @@ $mobile-breakpoint: 968px;
     justify-content: center;
     border-radius: 50%;
     transition: all 0.3s ease;
-    position: relative;
 
     img {
       width: 22px;
@@ -176,6 +158,10 @@ $mobile-breakpoint: 968px;
     box-shadow: 0 0 15px color-mix(in srgb, var(--primary), transparent 80%);
   }
 }
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
 
 @media (max-width: 1200px) and (min-width: 969px) {
   .nav-links {

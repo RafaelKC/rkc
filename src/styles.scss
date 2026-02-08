@@ -1,3 +1,9 @@
+$mobile-breakpoint: 968px;
+
+// ============================================================================
+// CSS VARIABLES & THEME
+// ============================================================================
+
 :root {
   --primary: hsl(212, 94%, 68%);
   --secondary: hsl(189, 85%, 47%);
@@ -6,10 +12,8 @@
   --bg: hsl(229, 84%, 5%);
   --text: hsl(210, 40%, 96%);
   --surface: hsl(226, 47%, 11%);
-
   --font-header: 'Michroma', sans-serif;
   --font-body: 'Inter', sans-serif;
-
   --header-height: 80px;
   --section-padding: 15rem;
   --container-max-width: 1400px;
@@ -25,6 +29,10 @@
   --text: hsl(224, 47%, 11%);
   --surface: hsl(0, 0%, 100%);
 }
+
+// ============================================================================
+// RESET & BASE STYLES
+// ============================================================================
 
 *,
 *::before,
@@ -66,11 +74,9 @@ h2 {
   font-size: clamp(1.8rem, 5vw, 2.8rem);
 }
 
-.container {
-  max-width: var(--container-max-width);
-  margin: 0 auto;
-  padding: 0 2rem;
-}
+// ============================================================================
+// SCROLLBAR STYLING
+// ============================================================================
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -83,11 +89,15 @@ h2 {
 ::-webkit-scrollbar-thumb {
   background: color-mix(in srgb, var(--primary), transparent 70%);
   border-radius: 10px;
+
+  &:hover {
+    background: var(--primary);
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
-}
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
 
 :focus-visible {
   outline: 2px solid var(--primary);
@@ -100,6 +110,109 @@ h2 {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .stars,
+  .nebula,
+  .hero-planet-container,
+  .planet-core::after {
+    animation: none !important;
+  }
+}
+
+// ============================================================================
+// ANIMATIONS
+// ============================================================================
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.2;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes float-nebula {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(50px, 30px) scale(1.1);
+  }
+}
+
+@keyframes float-planet {
+
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0);
+  }
+
+  50% {
+    transform: translateY(-54%) translateX(-15px);
+  }
+}
+
+@keyframes rotate-energy {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent), transparent 70%);
+  }
+
+  70% {
+    opacity: 1;
+    box-shadow: 0 0 0 10px transparent;
+  }
+
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+// ============================================================================
+// LAYOUT UTILITIES
+// ============================================================================
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .section-header {
@@ -120,14 +233,230 @@ h2 {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 900;
     text-transform: uppercase;
-
-
     background: var(--brand-gradient);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-
-
     filter: drop-shadow(0 0 30px color-mix(in srgb, var(--primary), transparent 80%));
+  }
+}
+
+// ============================================================================
+// SHARED COMPONENT STYLES
+// ============================================================================
+
+// Glass Card Effect
+.glass-card,
+.skill-card,
+.project-card,
+.contact-form {
+  background: color-mix(in srgb, var(--surface), transparent 40%);
+  border: 1px solid color-mix(in srgb, var(--primary), transparent 85%);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--primary), transparent 60%);
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--bg), transparent 20%);
+  }
+}
+
+.link-card {
+  background: color-mix(in srgb, var(--surface), transparent 45%);
+  border: 1px solid color-mix(in srgb, var(--primary), transparent 85%);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    border-color: var(--primary);
+    background: color-mix(in srgb, var(--primary), transparent 94%);
+    box-shadow: 4px 4px 20px color-mix(in srgb, var(--bg), transparent 50%);
+  }
+}
+
+// Icons with Glow Effect
+.card-icon,
+.icon-box,
+.timeline-marker lucide-icon {
+  color: var(--primary);
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--primary), transparent 60%));
+  transition: all 0.3s ease;
+}
+
+// Gradient Text Effect
+.gradient-text,
+.logo,
+.info-title,
+.section-header .title {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 20px color-mix(in srgb, var(--primary), transparent 70%));
+}
+
+// Tags Styling
+.tech-tags .tag,
+.tags-list .tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.9rem;
+  border-radius: 50px;
+  background: color-mix(in srgb, var(--primary), transparent 92%);
+  border: 1px solid color-mix(in srgb, var(--primary), transparent 85%);
+  color: color-mix(in srgb, var(--text), transparent 10%);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  cursor: default;
+
+  &:hover {
+    background: color-mix(in srgb, var(--primary), transparent 80%);
+    border-color: var(--primary);
+    color: white;
+  }
+
+  &.tag-post {
+    background: color-mix(in srgb, var(--accent), transparent 90%);
+    border-color: color-mix(in srgb, var(--accent), transparent 60%);
+    color: var(--accent);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--accent), transparent 90%);
+
+    &:hover {
+      background: var(--accent);
+      color: var(--bg);
+      box-shadow: 0 0 15px var(--accent);
+    }
+  }
+}
+
+// Buttons Base Style
+.btn,
+.submit-btn,
+.cv-button {
+  font-family: var(--font-header);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    filter: grayscale(1);
+  }
+}
+
+// Primary Gradient Buttons
+.btn-primary,
+.submit-btn,
+.cv-button {
+  background: var(--brand-gradient);
+  color: white;
+  box-shadow: 0 0 15px color-mix(in srgb, var(--primary), transparent 60%);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px color-mix(in srgb, var(--primary), transparent 30%);
+  }
+}
+
+// Section Titles
+.card-title,
+.project-title,
+.job-title {
+  font-family: var(--font-header);
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+// Descriptions
+.card-desc,
+.project-desc,
+.description,
+.info-text {
+  color: color-mix(in srgb, var(--text), transparent 30%);
+  line-height: 1.6;
+}
+
+// Lists Reset
+.nav-links,
+.skills-grid,
+.tech-tags,
+.tags-list,
+.info-list,
+.timeline-list,
+.achievements-list,
+.projects-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+// Flex Center Utility
+.icon-box,
+.social-bubble,
+.timeline-marker,
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Hover Transform Effect
+.project-card,
+.skill-card {
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.link-card,
+.social-bubble {
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+// Accent Color Elements
+.status-badge {
+  background: color-mix(in srgb, var(--accent), transparent 90%);
+  border: 1px solid color-mix(in srgb, var(--accent), transparent 60%);
+  color: var(--accent);
+}
+
+// Form Inputs
+input,
+textarea {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid color-mix(in srgb, var(--primary), transparent 80%);
+  border-radius: 8px;
+  color: white;
+  font-family: inherit;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--primary), transparent 80%);
+  }
+}
+
+// Lucide Icons Display Fix
+lucide-icon {
+  display: flex;
+}
+
+// ============================================================================
+// RESPONSIVE UTILITIES
+// ============================================================================
+
+@media (max-width: $mobile-breakpoint) {
+  .desktop-only {
+    display: none;
   }
 }

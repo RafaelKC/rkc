@@ -1,3 +1,5 @@
+$mobile-breakpoint: 968px;
+
 .theme-toggle {
   position: fixed;
   bottom: 2rem;
@@ -5,9 +7,6 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 1000;
   cursor: pointer;
   background: color-mix(in srgb, var(--surface), transparent 30%);
@@ -16,9 +15,6 @@
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   .icon-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: transform 0.5s ease;
   }
 
@@ -59,12 +55,7 @@
     }
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 4px;
-  }
-
-  @media (max-width: 968px) {
+  @media (max-width: $mobile-breakpoint) {
     bottom: 1rem;
     right: 1rem;
     width: 48px;
@@ -74,15 +65,5 @@
       width: 20px;
       height: 20px;
     }
-  }
-}
-
-@keyframes orbit-rotate {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
   }
 }

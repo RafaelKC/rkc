@@ -1,14 +1,9 @@
 .projects-section {
   padding: var(--section-padding) 0;
-  position: relative;
-
   border-bottom: 1px solid color-mix(in srgb, var(--primary), transparent 95%);
 }
 
 .projects-grid {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
@@ -21,11 +16,7 @@
 }
 
 .project-card {
-  background: color-mix(in srgb, var(--surface), transparent 40%);
-  border: 1px solid color-mix(in srgb, var(--primary), transparent 85%);
-  border-radius: 16px;
   overflow: hidden;
-  backdrop-filter: blur(10px);
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   display: flex;
   flex-direction: column;
@@ -34,20 +25,15 @@
 
   &:hover {
     transform: translateY(-8px);
-    border-color: color-mix(in srgb, var(--primary), transparent 60%);
-    box-shadow: 0 15px 40px color-mix(in srgb, var(--bg), transparent 10%);
-
 
     .project-banner {
       transform: scale(1.08);
     }
 
-
     .visual-accent {
       width: 100%;
       opacity: 1;
     }
-
 
     .explore-link {
       color: var(--accent);
@@ -55,7 +41,6 @@
     }
   }
 }
-
 
 .card-visual {
   height: 220px;
@@ -75,7 +60,6 @@
   opacity: 0.9;
 }
 
-
 .overlay {
   position: absolute;
   inset: 0;
@@ -84,7 +68,6 @@
       color-mix(in srgb, var(--surface), transparent 10%) 100%);
   pointer-events: none;
 }
-
 
 .visual-accent {
   position: absolute;
@@ -101,7 +84,6 @@
   border-radius: 0 0 4px 4px;
 }
 
-
 .card-content {
   padding: 1.5rem 2rem;
   flex-grow: 1;
@@ -110,65 +92,23 @@
 }
 
 .project-title {
-  font-family: var(--font-header);
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--text);
   margin-bottom: 0.75rem;
   line-height: 1.2;
 }
 
 .project-desc {
   font-size: 0.95rem;
-  color: color-mix(in srgb, var(--text), transparent 30%);
-  line-height: 1.6;
   margin-bottom: 1.5rem;
 }
-
 
 .tags-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
   margin-top: auto;
-
-  .tag {
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.35rem 0.9rem;
-    border-radius: 50px;
-    background: color-mix(in srgb, var(--primary), transparent 92%);
-    border: 1px solid color-mix(in srgb, var(--primary), transparent 85%);
-    color: color-mix(in srgb, var(--text), transparent 10%);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.2s ease;
-    cursor: default;
-
-    &:hover {
-      background: color-mix(in srgb, var(--primary), transparent 80%);
-      border-color: var(--primary);
-      color: white;
-    }
-
-    &.tag-post {
-      background: color-mix(in srgb, var(--accent), transparent 90%);
-      border-color: color-mix(in srgb, var(--accent), transparent 60%);
-      color: var(--accent);
-      box-shadow: 0 0 10px color-mix(in srgb, var(--accent), transparent 90%);
-
-      &:hover {
-        background: var(--accent);
-        color: var(--bg);
-        box-shadow: 0 0 15px var(--accent);
-      }
-    }
-  }
 }
-
 
 .card-footer {
   padding: 0 2rem 2rem;
@@ -188,7 +128,6 @@
   letter-spacing: 1.5px;
   transition: all 0.3s ease;
 
-
   &::after {
     content: '';
     position: absolute;
@@ -197,6 +136,9 @@
   }
 }
 
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
 
 @media (max-width: 768px) {
   .projects-grid {
