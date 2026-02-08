@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RkcTranslationPipe } from '@rkc/pipes/rkc-translation-pipe';
+import { ContactInput, ContactService } from '@rkc/services/contact-service';
 import { USER_PROFILE } from '@rkc/use_profile';
 import { LucideAngularModule, Mail, MapPin, Phone, Send } from 'lucide-angular';
 
@@ -25,9 +26,12 @@ export class Contact {
     message: ['', [Validators.required, Validators.minLength(10)]],
   });
 
+  private readonly contactService = inject(ContactService);
+
   public onSubmit(): void {
     if (this.contactForm.valid) {
-      console.log('Transmissão enviada:', this.contactForm.value);
+      const input = this.contactForm.getRawValue() as ContactInput;
+      this.contactService.sendContactMessage(input);
       this.contactForm.reset();
     }
   }

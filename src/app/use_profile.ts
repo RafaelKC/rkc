@@ -1,72 +1,5 @@
-import {
-  Database,
-  Github,
-  Linkedin,
-  LinkIcon,
-  LucideIconData,
-  Monitor,
-  Rocket,
-  Star,
-} from 'lucide-angular';
-
-export interface LocalizedText {
-  pt: string;
-  en: string;
-}
-
-export interface SkillGroup {
-  title: LocalizedText;
-  description: LocalizedText;
-  icon: string | LucideIconData;
-  techs: string[];
-}
-
-export interface ExperienceItem {
-  id: string;
-  dateRange: {
-    start: LocalizedText;
-    end: LocalizedText;
-  };
-  title: LocalizedText;
-  company: LocalizedText;
-  description: LocalizedText;
-  achievements: LocalizedText[];
-}
-
-export interface SocialLink {
-  platform: string;
-  url: string;
-  icon: string | LucideIconData;
-  useOnSeo?: boolean;
-  useOnContact?: boolean;
-  useOnLinks?: boolean;
-}
-
-export interface Project {
-  id: string;
-  title: LocalizedText;
-  description: LocalizedText;
-  tags: string[];
-  banner: string;
-  url: string;
-  hasPost?: boolean;
-}
-
-export interface UserProfile {
-  firstName: string;
-  lastName: string;
-  careerStart: Date;
-  skills: SkillGroup[];
-  experience: ExperienceItem[];
-  socialLinks: SocialLink[];
-  projects: Project[];
-  contact: {
-    email: LocalizedText;
-    phone: LocalizedText;
-    location: LocalizedText;
-  };
-  cv: LocalizedText;
-}
+import { UserProfile } from '@rkc/use_profile-type';
+import { Database, Github, Linkedin, LinkIcon, Monitor, Rocket, Star } from 'lucide-angular';
 
 export const USER_PROFILE: UserProfile = {
   firstName: 'Rafael',
@@ -254,7 +187,8 @@ export const USER_PROFILE: UserProfile = {
     },
   ],
   contact: {
-    email: { pt: 'contato@rafaelchicovis.com.br', en: 'contato@rafaelchicovis.com.br' },
+    sendEmailLink: 'https://formsubmit.co/contato.rafael.chicovis@gmail.com',
+    email: { pt: 'contato.rafael.chicovis@gmail.com', en: 'contato.rafael.chicovis@gmail.com' },
     phone: { pt: '(41) 99142-1020', en: '+55 (41) 99142-1020' },
     location: { pt: 'Curitiba, PR - Brasil', en: 'Curitiba - Brazil' },
   },

@@ -3,7 +3,8 @@ import { inject, Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { LocalizedText, USER_PROFILE } from '@rkc/use_profile';
+import { USER_PROFILE } from '@rkc/use_profile';
+import { LocalizedText } from '@rkc/use_profile-type';
 import { filter } from 'rxjs';
 
 @Injectable({

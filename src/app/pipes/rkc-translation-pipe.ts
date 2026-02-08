@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, inject, OnDestroy, Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LocalizedText } from '@rkc/use_profile';
+import { LocalizedText } from '@rkc/use_profile-type';
 import { Subscription } from 'rxjs';
 import { RkcTranslationService } from '../services/rkc-translation-service';
 
