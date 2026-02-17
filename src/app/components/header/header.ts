@@ -1,35 +1,22 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  DestroyRef,
-  inject,
-  OnDestroy,
-  signal,
-} from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import { RkcTranslationPipe } from '@rkc/pipes/rkc-translation-pipe';
 import { RkcTranslationService } from '@rkc/services/rkc-translation-service';
 import { USER_PROFILE } from '@rkc/use_profile';
-import { LucideAngularModule, Menu, X } from 'lucide-angular';
-import { filter, map } from 'rxjs';
+import { LucideAngularModule, Menu } from 'lucide-angular';
+import { RkcTranslationPipe } from '../../pipes/rkc-translation-pipe';
 
 @Component({
   selector: 'rkc-header',
-  imports: [LucideAngularModule, RkcTranslationPipe, CommonModule, RouterModule],
+  imports: [LucideAngularModule, CommonModule, RouterModule, RkcTranslationPipe],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Header implements OnDestroy {
-  public readonly MenuIcon = Menu;
-  public readonly CloseIcon = X;
-
-  public isMenuOpen = signal<boolean>(false);
-  public hasScrolled = signal<boolean>(false);
+export class Header {
+  public menuOpen = signal(false);
+  public menu = Menu;
 
   public readonly currentLang = computed(() => this._translationService?.currentLang());
 
@@ -39,53 +26,12 @@ export class Header implements OnDestroy {
   });
 
   private readonly _translationService = inject(RkcTranslationService);
-  private readonly _router = inject(Router);
-  private readonly _destroyRef = inject(DestroyRef);
-
-  private _observer: IntersectionObserver | null = null;
-  private _scrollListener: (() => void) | null = null;
-
-  private readonly currentRoute = toSignal(
-    this._router.events.pipe(
-      takeUntilDestroyed(this._destroyRef),
-      filter((event) => event instanceof NavigationEnd),
-      map(() => this._router.url),
-    ),
-  );
-
-  public ngOnDestroy(): void {
-    this._observer?.disconnect();
-    if (this._scrollListener) {
-      window.removeEventListener('scroll', this._scrollListener);
-    }
-  }
 
   public changeLanguage(lang: string): void {
     this._translationService.changeLanguage(lang);
   }
 
-  public scrollTo(sectionId: string) {
-    this.closeMenu();
-
-    const element = document.getElementById(sectionId);
-
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
-  }
-
-  public toggleMenu() {
-    this.isMenuOpen.update((v) => !v);
-  }
-
-  public closeMenu() {
-    this.isMenuOpen.set(false);
+  public toggleMenu(): void {
+    this.menuOpen.update((val) => !val);
   }
 }

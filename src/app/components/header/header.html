@@ -1,94 +1,62 @@
-<header class="main-header" role="banner">
-  <div class="container">
-    <a href="#home" class="logo" [attr.aria-label]="'HEADER.LOGO_ALT' | rkcTranslation">
-      <span class="bracket" aria-hidden="true">&lt;</span>RKC<span
-        class="bracket"
-        aria-hidden="true"
-        >/&gt;</span
-      >
-    </a>
+<header class="main-header box">
+  <h1>RKC</h1>
+  <div class="left">
+    <div class="options">
+      <a>{{ 'HEADER.HOME' | rkcTranslation }}</a>
+      <a>{{ 'HEADER.SKILLS' | rkcTranslation }}</a>
+      <a>{{ 'HEADER.EXPERIENCE' | rkcTranslation }}</a>
+      <a>{{ 'HEADER.CONTACT' | rkcTranslation }}</a>
+      <a>{{ 'HEADER.LINKS' | rkcTranslation }}</a>
 
-    <div class="header-controls">
-      <nav
-        id="primary-navigation"
-        [class.open]="isMenuOpen()"
-        [attr.aria-label]="'HEADER.MENU_LABEL' | rkcTranslation"
-      >
-        <ul class="nav-links" role="list">
-          <li>
-            <a href="#home" (click)="closeMenu()">{{ 'HEADER.HOME' | rkcTranslation }}</a>
-          </li>
-          <li>
-            <a href="#skills" (click)="closeMenu()">{{ 'HEADER.SKILLS' | rkcTranslation }}</a>
-          </li>
-          <li>
-            <a href="#experience" (click)="closeMenu()">{{
-              'HEADER.EXPERIENCE' | rkcTranslation
-            }}</a>
-          </li>
-          <li>
-            <a href="#projects" (click)="closeMenu()">{{ 'HEADER.PROJECTS' | rkcTranslation }}</a>
-          </li>
-          <li>
-            <a href="#contact" (click)="closeMenu()">{{ 'HEADER.CONTACT' | rkcTranslation }}</a>
-          </li>
+      <a [href]="cvUrl()" download class="rkc-button">
+        {{ 'HEADER.DOWNLOAD_CV' | rkcTranslation }}
+      </a>
+    </div>
 
-          <li>
-            <a routerLink="/links" routerLinkActive="active" (click)="closeMenu()">
-              {{ 'HEADER.LINKS' | rkcTranslation }}
-            </a>
-          </li>
-
-          <li class="nav-cta">
-            <a [href]="cvUrl()" download class="cv-button">
-              {{ 'HEADER.DOWNLOAD_CV' | rkcTranslation }}
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="lang-switcher">
-        <button
-          class="lang-btn"
-          [class.active]="currentLang() === 'pt'"
-          (click)="changeLanguage('pt')"
-          [attr.aria-label]="'HEADER.CHANGE_TO_PORTUGUESE' | rkcTranslation"
-        >
-          <img
-            src="https://flagcdn.com/w40/br.png"
-            [alt]="'HEADER.BRAZILIAN_FLAG_ALT' | rkcTranslation"
-            width="24"
-            height="24"
-          />
-        </button>
-        <button
-          class="lang-btn"
-          [class.active]="currentLang() === 'en'"
-          (click)="changeLanguage('en')"
-          [attr.aria-label]="'HEADER.CHANGE_TO_ENGLISH' | rkcTranslation"
-        >
-          <img
-            src="https://flagcdn.com/w40/us.png"
-            [alt]="'HEADER.US_FLAG_ALT' | rkcTranslation"
-            width="24"
-            height="24"
-          />
-        </button>
-      </div>
-
+    <div class="lang-switcher">
       <button
-        class="menu-toggle"
-        (click)="toggleMenu()"
-        [attr.aria-expanded]="isMenuOpen()"
-        aria-controls="primary-navigation"
-        [attr.aria-label]="'HEADER.MENU_LABEL' | rkcTranslation"
+        class="lang-btn"
+        [class.active]="currentLang() === 'pt'"
+        (click)="changeLanguage('pt')"
+        [attr.aria-label]="'HEADER.CHANGE_TO_PORTUGUESE' | rkcTranslation"
       >
-        <lucide-icon
-          [name]="isMenuOpen() ? CloseIcon : MenuIcon"
-          size="24"
-          aria-hidden="true"
-        ></lucide-icon>
+        <img
+          src="https://flagcdn.com/w40/br.png"
+          [alt]="'HEADER.BRAZILIAN_FLAG_ALT' | rkcTranslation"
+          width="24"
+          height="24"
+        />
+      </button>
+      <button
+        class="lang-btn"
+        [class.active]="currentLang() === 'en'"
+        (click)="changeLanguage('en')"
+        [attr.aria-label]="'HEADER.CHANGE_TO_ENGLISH' | rkcTranslation"
+      >
+        <img
+          src="https://flagcdn.com/w40/us.png"
+          [alt]="'HEADER.US_FLAG_ALT' | rkcTranslation"
+          width="24"
+          height="24"
+        />
       </button>
     </div>
+
+    <button class="menu-toggle rkc-button" (click)="toggleMenu()" [class.active]="menuOpen()">
+      <lucide-icon [name]="menu" />
+    </button>
   </div>
 </header>
+
+<div class="menu-overlay" [class.active]="menuOpen()" (click)="toggleMenu()">
+  <div class="menu-content" (click)="$event.stopPropagation()">
+    <a (click)="toggleMenu()">{{ 'HEADER.HOME' | rkcTranslation }}</a>
+    <a (click)="toggleMenu()">{{ 'HEADER.SKILLS' | rkcTranslation }}</a>
+    <a (click)="toggleMenu()">{{ 'HEADER.EXPERIENCE' | rkcTranslation }}</a>
+    <a (click)="toggleMenu()">{{ 'HEADER.CONTACT' | rkcTranslation }}</a>
+    <a (click)="toggleMenu()">{{ 'HEADER.LINKS' | rkcTranslation }}</a>
+    <a [href]="cvUrl()" download class="rkc-button" (click)="toggleMenu()">
+      {{ 'HEADER.DOWNLOAD_CV' | rkcTranslation }}
+    </a>
+  </div>
+</div>

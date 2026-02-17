@@ -1,11 +1,9 @@
 .hero-section {
-  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: var(--header-height);
-  text-align: center;
+  padding: clamp(1rem, 5vw, 2rem);
 }
 
 .hero-content {
@@ -14,10 +12,6 @@
   align-items: center;
   gap: 2rem;
   max-width: 900px;
-  margin: 0 auto;
-  animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  opacity: 0;
-  transform: translateY(20px);
 }
 
 .status-badge {
@@ -28,17 +22,12 @@
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 1rem;
-  line-height: 1;
 
   .dot {
     width: 8px;
     height: 8px;
-    background: var(--accent);
+    background: var(--color-primary);
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--accent);
     animation: pulse 2s infinite;
   }
 }
@@ -47,29 +36,22 @@
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 900;
   line-height: 1;
-  letter-spacing: -2px;
-  margin-bottom: 0.5rem;
 }
 
 .hero-role {
-  font-family: var(--font-body);
   font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 400;
-  color: var(--text);
-  opacity: 0.9;
-  letter-spacing: 2px;
   text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .hero-description {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
   line-height: 1.8;
   max-width: 650px;
-  color: color-mix(in srgb, var(--text), transparent 40%);
-  margin-bottom: 1rem;
+  color: var(--text-color);
 
   strong {
-    color: var(--text);
     font-weight: 700;
   }
 }
@@ -85,33 +67,37 @@
     justify-content: center;
     height: 56px;
     padding: 0 2.5rem;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     font-size: 0.9rem;
-    line-height: 1;
-    position: relative;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
     lucide-icon {
       margin-left: 0.75rem;
-      transform: translateY(1px);
+    }
+
+    &.btn-primary {
+      background: var(--color-primary);
+      color: white;
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
 
     &.btn-outline {
       background: transparent;
-      border: 1px solid color-mix(in srgb, var(--text), transparent 80%);
-      color: var(--text);
+      border: 1px solid var(--color-primary);
+      color: var(--color-primary);
 
       &:hover {
-        border-color: var(--primary);
-        color: var(--primary);
-        background: color-mix(in srgb, var(--primary), transparent 90%);
+        background: var(--color-primary);
+        color: white;
       }
     }
   }
 }
-
-// ============================================================================
-// RESPONSIVE
-// ============================================================================
 
 @media (max-width: 768px) {
   .hero-actions {
@@ -121,5 +107,17 @@
     .btn {
       width: 100%;
     }
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
   }
 }

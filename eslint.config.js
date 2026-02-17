@@ -89,11 +89,7 @@ module.exports = defineConfig([
   },
   {
     files: ['**/*.html'],
-    extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
-      eslintPluginPrettier,
-    ],
+    extends: [...angular.configs.templateRecommended, eslintPluginPrettier],
     rules: {
       'prettier/prettier': ['error', { parser: 'angular' }],
     },

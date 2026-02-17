@@ -18,9 +18,7 @@ export const PT_RKC_I18N: RkcI18n = {
   },
   HERO: {
     ROLE: 'Engenheiro de Software Full Stack',
-    DESC_START: 'Transformando ideias complexas em arquiteturas robustas com .NET e Angular.',
-    YEARS_TEXT: '+{{years}} anos',
-    DESC_END: 'de experiência criando soluções escaláveis e interfaces de alta performance.',
+    DESC: 'Transformando ideias complexas em arquiteturas robustas com .NET e Angular. <strong>+{{years}} anos</strong> de experiência criando soluções escaláveis e interfaces de alta performance.',
     AVAILABLE_BADGE: 'Disponível para novas oportunidades',
     BTN_CONTACT: 'Iniciar Contato',
     BTN_PROJECTS: 'Ver Projetos',

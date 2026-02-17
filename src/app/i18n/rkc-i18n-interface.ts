@@ -21,9 +21,7 @@ export interface RkcI18n extends TranslationObject {
   };
   HERO: {
     ROLE: string;
-    DESC_START: string;
-    YEARS_TEXT: string;
-    DESC_END: string;
+    DESC: string;
     AVAILABLE_BADGE: string;
     BTN_CONTACT: string;
     BTN_PROJECTS: string;

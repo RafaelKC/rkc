@@ -1,19 +1,8 @@
 <button
   class="theme-toggle"
   (click)="toggleTheme()"
-  [attr.data-is-dark]="isDark()"
-  [aria-label]="(isDark() ? 'THEME.TO_LIGHT' : 'THEME.TO_DARK') | rkcTranslation"
+  [attr.aria-label]="(isDark() ? 'THEME.TO_LIGHT' : 'THEME.TO_DARK') | rkcTranslation"
   type="button"
 >
-  <div class="toggle-ring" aria-hidden="true"></div>
-  <div class="icon-wrapper">
-    <lucide-icon
-      [name]="isDark() ? Sun : Moon"
-      [strokeWidth]="2"
-      [class.sun-color]="isDark()"
-      class="icon"
-      aria-hidden="true"
-    >
-    </lucide-icon>
-  </div>
+  <lucide-icon [name]="isDark() ? Sun : Moon" [strokeWidth]="2" class="icon" aria-hidden="true" />
 </button>

@@ -13,12 +13,10 @@
       <h2 class="hero-role">
         {{ 'HERO.ROLE' | translate }}
       </h2>
-      <p class="hero-description">
-        {{ 'HERO.DESC_START' | translate }}
-        <br class="desktop-only" aria-hidden="true" />
-        <strong>
-          {{ 'HERO.YEARS_TEXT' | translate: { years: yearsOfExperience() } }}
-        </strong>
+      <p
+        class="hero-description"
+        [innerHTML]="'HERO.DESC' | translate: { years: yearsOfExperience() }"
+      >
         {{ 'HERO.DESC_END' | translate }}
       </p>
       <div class="hero-actions">
@@ -26,10 +24,10 @@
           {{ 'HERO.BTN_CONTACT' | translate }}
           <lucide-icon [name]="ArrowRight" size="18" aria-hidden="true"></lucide-icon>
         </button>
-        <button class="btn btn-outline" (click)="scrollTo('projects')">
+        <!-- <button class="btn btn-outline" (click)="scrollTo('projects')">
           {{ 'HERO.BTN_PROJECTS' | translate }}
           <lucide-icon [name]="CodeIcon" size="18" aria-hidden="true"></lucide-icon>
-        </button>
+        </button> -->
       </div>
     </div>
   </div>
