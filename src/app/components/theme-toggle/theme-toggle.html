@@ -1,8 +1,0 @@
-<button
-  class="theme-toggle"
-  (click)="toggleTheme()"
-  [attr.aria-label]="(isDark() ? 'THEME.TO_LIGHT' : 'THEME.TO_DARK') | rkcTranslation"
-  type="button"
->
-  <lucide-icon [name]="isDark() ? Sun : Moon" [strokeWidth]="2" class="icon" aria-hidden="true" />
-</button>
