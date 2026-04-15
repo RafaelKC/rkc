@@ -1,0 +1,574 @@
+---
+const { lang } = Astro.props;
+import { useTranslations, defaultLang } from "../i18n/ui";
+const t = useTranslations(lang);
+
+const toggleLang = lang === "pt" ? "en" : "pt";
+const toggleHref = `/${toggleLang}/`;
+
+// SEO Meta Data
+const title = `Rafael Chicovis | ${t("hero.role")}`;
+const description = t("hero.description");
+const siteUrl = "https://chicovis.dev";
+const ogImage = `${siteUrl}/og-image.jpg`; // Lembre-se de colocar esta imagem na pasta /public
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Rafael Chicovis" />
+    <link rel="canonical" href={`${siteUrl}/${lang}/`} />
+
+    <link rel="alternate" hreflang="pt" href={`${siteUrl}/pt/`} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}/en/`} />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={`${siteUrl}/${defaultLang}/`}
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${siteUrl}/${lang}/`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={`${siteUrl}/${lang}/`} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Rafael Chicovis",
+        "jobTitle": "Software Engineer",
+        "url": "https://chicovis.dev",
+        "sameAs": [
+          "https://github.com/RafaelKC",
+          "https://linkedin.com/in/rafael-chicovis"
+        ]
+      }
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo accent">chicovis.dev</div>
+      <nav>
+        <div class="nav-links">
+          <a href="#top">{t("nav.home")}</a>
+          <a href="#experience">{t("nav.experience")}</a>
+          <a href="#education">{t("nav.education")}</a>
+          <a href="#contact">{t("nav.contact")}</a>
+        </div>
+        <a href={toggleHref} class="lang-badge">{toggleLang.toUpperCase()}</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero content-wrapper">
+        <p class="mono-text">{t("hero.greeting")}</p>
+        <h1 class="main-title accent">Rafael Chicovis</h1>
+        <h2 class="sub-title">{t("hero.role")}</h2>
+        <p class="description">{t("hero.description")}</p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">{t("hero.cta.contact")} →</a>
+          <a href={t("link.cv")} download class="btn-cv">
+            <i class="ti ti-download"></i>
+            {t("hero.cta.cv")}
+          </a>
+          <div class="hero-social-links">
+            <a href={t("link.github")} target="_blank" class="icon-link"
+              ><i class="ti ti-brand-github"></i></a
+            >
+            <a href={t("link.linkedin")} target="_blank" class="icon-link"
+              ><i class="ti ti-brand-linkedin"></i></a
+            >
+            <a href={t("link.email")} class="icon-link"
+              ><i class="ti ti-mail"></i></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="alternate-section">
+        <div class="content-wrapper">
+          <h3 class="section-header">
+            <span class="number">01.</span>
+            <span class="title">{t("exp.title")}</span>
+          </h3>
+          <div class="exp-container">
+            <div class="exp-card">
+              <div class="exp-date">2025 — Present</div>
+              <div class="exp-content">
+                <h4>
+                  {t("exp.gestran.role")}
+                  <span class="accent">@ Gestran</span>
+                </h4>
+                <p>{t("exp.gestran.desc")}</p>
+                <div class="tags">
+                  <span>.NET 8</span><span>SQL Server</span><span
+                    >Azure DevOps</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="exp-card">
+              <div class="exp-date">2021 — 2025</div>
+              <div class="exp-content">
+                <h4>
+                  {t("exp.viasoft.role")}
+                  <span class="accent">@ Viasoft Korp</span>
+                </h4>
+                <p>{t("exp.viasoft.desc")}</p>
+                <div class="tags">
+                  <span>Angular</span><span>C#</span><span>PostgreSQL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="alternate-section">
+        <div class="content-wrapper">
+          <h3 class="section-header">
+            <span class="number">02.</span>
+            <span class="title">{t("edu.title")}</span>
+          </h3>
+          <div class="grid-cards">
+            <div class="card">
+              <span class="date-tag">2022 — 2026</span>
+              <h5>{t("edu.puc.course")}</h5>
+              <p>PUCPR - Pontifícia Universidade Católica do Paraná</p>
+              <p class="date-tag" style="margin-top: 10px;">
+                {t("edu.puc.date")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="alternate-section">
+        <div class="content-wrapper">
+          <h3 class="section-header">
+            <span class="number">03.</span>
+            <span class="title">{t("nav.contact")}</span>
+          </h3>
+          <div class="contact-layout">
+            <div class="contact-info">
+              <h4 class="white-text" style="font-size: 2rem;">
+                {t("contact.title")}
+              </h4>
+              <p class="subtitle">{t("contact.subtitle")}</p>
+              <div class="contact-social-links">
+                <a href={t("link.github")} target="_blank" class="icon-link"
+                  ><i class="ti ti-brand-github"></i></a
+                >
+                <a href={t("link.linkedin")} target="_blank" class="icon-link"
+                  ><i class="ti ti-brand-linkedin"></i></a
+                >
+                <a href={t("link.email")} class="icon-link"
+                  ><i class="ti ti-mail"></i></a
+                >
+              </div>
+            </div>
+            <div class="form-container">
+              <form class="contact-form" onsubmit="event.preventDefault()">
+                <div class="form-group">
+                  <label>{t("contact.label.name")}</label>
+                  <input type="text" required />
+                </div>
+                <div class="form-group">
+                  <label>{t("contact.label.email")}</label>
+                  <input type="email" required />
+                </div>
+                <div class="form-group">
+                  <label>{t("contact.label.message")}</label>
+                  <textarea rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit"
+                  >{t("contact.button")}</button
+                >
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <p>© 2026 Rafael Chicovis. {t("footer.rights")}</p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  :root {
+    --bg-dark: #0a0a0a;
+    --bg-light: #111111;
+    --accent: #ff6b00;
+    --text-dim: #94a3b8;
+    --white: #f8fafc;
+    --border: #262626;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-dim);
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .content-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
+  }
+  .navbar nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nav-links {
+    display: flex;
+    gap: 0.8rem;
+  }
+  .navbar a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .lang-badge {
+    background: var(--accent);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 800;
+    color: white !important;
+    font-size: 0.65rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 10rem 1.5rem 6rem;
+  }
+  .main-title {
+    font-size: clamp(2.2rem, 8vw, 5rem);
+    margin: 0;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .sub-title {
+    font-size: clamp(1.4rem, 5vw, 3.5rem);
+    margin-top: 0.5rem;
+    font-weight: 800;
+    color: var(--white);
+    opacity: 0.9;
+  }
+  .description {
+    max-width: 580px;
+    margin: 2rem 0;
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .hero-social-links,
+  .contact-social-links {
+    display: flex;
+    gap: 1.2rem;
+  }
+  .icon-link {
+    color: var(--text-dim);
+    font-size: 1.5rem;
+    transition: 0.2s;
+    text-decoration: none;
+  }
+  .icon-link:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  /* ESTILO DO BOTÃO CV */
+  .btn-cv {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    color: var(--white);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: 0.2s;
+  }
+  .btn-cv:hover {
+    background: var(--border);
+    border-color: var(--accent);
+  }
+
+  /* SECTIONS */
+  .alternate-section {
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .alternate-section:nth-of-type(even) {
+    background-color: var(--bg-light);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .section-header .number {
+    font-family: "Fira Code", monospace;
+    color: var(--accent);
+    font-size: 1.4rem;
+  }
+  .section-header .title {
+    color: var(--white);
+    font-size: 1.4rem;
+    font-weight: 700;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+  .section-header .title::after {
+    content: "";
+    height: 1px;
+    background: var(--border);
+    margin-left: 10px;
+    flex-grow: 1;
+    max-width: 150px;
+  }
+
+  /* EXP */
+  .exp-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .exp-card {
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+  .exp-date {
+    font-family: "Fira Code", monospace;
+    color: var(--accent);
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .exp-content h4 {
+    color: var(--white);
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .tags span {
+    background: rgba(255, 107, 0, 0.1);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  /* CONTATO */
+  .contact-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .form-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .contact-form {
+    background: var(--bg-dark);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 500px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  input,
+  textarea {
+    background: var(--bg-light);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 0.8rem;
+    border-radius: 6px;
+    width: 100%;
+    outline: none;
+  }
+  .btn-submit {
+    background: var(--accent);
+    border: none;
+    padding: 1rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+  .main-footer {
+    padding: 3rem 0;
+    text-align: center;
+    font-size: 0.7rem;
+    opacity: 0.6;
+  }
+
+  @media (min-width: 768px) {
+    .navbar {
+      padding: 1.5rem 10%;
+    }
+    .navbar a {
+      font-size: 0.9rem;
+    }
+    .nav-links {
+      gap: 2rem;
+    }
+    .hero {
+      padding: 15rem 0 10rem;
+    }
+    .alternate-section {
+      padding: 8rem 0;
+    }
+    .section-header .number {
+      font-size: 2rem;
+    }
+    .section-header .title {
+      font-size: 2rem;
+    }
+    .exp-container {
+      gap: 3rem;
+    }
+    .exp-card {
+      padding: 2.5rem;
+    }
+    .exp-content h4 {
+      font-size: 1.4rem;
+    }
+    .contact-layout {
+      flex-direction: row;
+      gap: 4rem;
+      align-items: start;
+    }
+    .form-container {
+      justify-content: flex-start;
+    }
+    .contact-social-links {
+      margin-top: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .logo {
+      display: none;
+    }
+    .navbar {
+      justify-content: center;
+    }
+    .navbar nav {
+      width: 100%;
+      justify-content: center;
+    }
+    .nav-links {
+      gap: 1rem;
+    }
+  }
+</style>
