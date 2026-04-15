@@ -1,0 +1,23 @@
+name: Deploy Portfolio OCI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute Remote Build and Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.OCI_HOST }}
+          username: ${{ secrets.OCI_USER }}
+          key: ${{ secrets.OCI_SSH_KEY }}
+          script: |
+            cd /home/${{ secrets.OCI_USER }}/rkc
+            git pull origin main
+            docker build -t portfolio-local .
+            docker stop portfolio || true
+            docker rm portfolio || true
+            docker run -d --name portfolio -p 80:80 portfolio-local
