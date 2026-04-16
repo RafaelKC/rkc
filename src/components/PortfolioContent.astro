@@ -79,21 +79,30 @@ const errorMsg = t("contact.error");
     />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a
+    >
+
     <header class="navbar">
-      <div class="logo accent">chicovis.dev</div>
-      <nav>
+      <div class="logo accent" aria-hidden="true">chicovis.dev</div>
+      <nav aria-label="Navegação principal">
         <div class="nav-links">
           <a href="#top">{t("nav.home")}</a>
           <a href="#experience">{t("nav.experience")}</a>
           <a href="#education">{t("nav.education")}</a>
           <a href="#contact">{t("nav.contact")}</a>
         </div>
-        <a href={toggleHref} class="lang-badge">{toggleLang.toUpperCase()}</a>
+        <a
+          href={toggleHref}
+          class="lang-badge"
+          aria-label={`Mudar idioma para ${toggleLang.toUpperCase()}`}
+        >
+          {toggleLang.toUpperCase()}
+        </a>
       </nav>
     </header>
 
-    <main id="top">
-      <section class="hero content-wrapper">
+    <main id="main-content">
+      <section id="top" class="hero content-wrapper">
         <p class="mono-text">{t("hero.greeting")}</p>
         <h1 class="main-title accent">Rafael Chicovis</h1>
         <h2 class="sub-title">{t("hero.role")}</h2>
@@ -102,19 +111,35 @@ const errorMsg = t("contact.error");
         <div class="hero-actions">
           <a href="#contact" class="btn-primary">{t("hero.cta.contact")} →</a>
           <a href={t("link.cv")} download class="btn-cv">
-            <i class="ti ti-download"></i>
+            <i class="ti ti-download" aria-hidden="true"></i>
             {t("hero.cta.cv")}
           </a>
           <div class="hero-social-links">
-            <a href={t("link.github")} target="_blank" class="icon-link"
-              ><i class="ti ti-brand-github"></i></a
+            <a
+              href={t("link.github")}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="icon-link"
+              aria-label="Visitar meu GitHub"
             >
-            <a href={t("link.linkedin")} target="_blank" class="icon-link"
-              ><i class="ti ti-brand-linkedin"></i></a
+              <i class="ti ti-brand-github" aria-hidden="true"></i>
+            </a>
+            <a
+              href={t("link.linkedin")}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="icon-link"
+              aria-label="Visitar meu LinkedIn"
             >
-            <a href={t("link.email")} class="icon-link"
-              ><i class="ti ti-mail"></i></a
+              <i class="ti ti-brand-linkedin" aria-hidden="true"></i>
+            </a>
+            <a
+              href={t("link.email")}
+              class="icon-link"
+              aria-label="Enviar um e-mail"
             >
+              <i class="ti ti-mail" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </section>
@@ -126,7 +151,7 @@ const errorMsg = t("contact.error");
             <span class="title">{t("exp.title")}</span>
           </h3>
           <div class="exp-container">
-            <div class="exp-card">
+            <article class="exp-card">
               <div class="exp-date">2025 — Present</div>
               <div class="exp-content">
                 <h4>
@@ -140,9 +165,9 @@ const errorMsg = t("contact.error");
                   >
                 </div>
               </div>
-            </div>
+            </article>
 
-            <div class="exp-card">
+            <article class="exp-card">
               <div class="exp-date">2021 — 2025</div>
               <div class="exp-content">
                 <h4>
@@ -154,7 +179,7 @@ const errorMsg = t("contact.error");
                   <span>Angular</span><span>C#</span><span>PostgreSQL</span>
                 </div>
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </section>
@@ -191,15 +216,27 @@ const errorMsg = t("contact.error");
               </h4>
               <p class="subtitle">{t("contact.subtitle")}</p>
               <div class="contact-social-links">
-                <a href={t("link.github")} target="_blank" class="icon-link"
-                  ><i class="ti ti-brand-github"></i></a
+                <a
+                  href={t("link.github")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="icon-link"
+                  aria-label="GitHub"
                 >
-                <a href={t("link.linkedin")} target="_blank" class="icon-link"
-                  ><i class="ti ti-brand-linkedin"></i></a
+                  <i class="ti ti-brand-github" aria-hidden="true"></i>
+                </a>
+                <a
+                  href={t("link.linkedin")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="icon-link"
+                  aria-label="LinkedIn"
                 >
-                <a href={t("link.email")} class="icon-link"
-                  ><i class="ti ti-mail"></i></a
-                >
+                  <i class="ti ti-brand-linkedin" aria-hidden="true"></i>
+                </a>
+                <a href={t("link.email")} class="icon-link" aria-label="Email">
+                  <i class="ti ti-mail" aria-hidden="true"></i>
+                </a>
               </div>
             </div>
             <div class="form-container">
@@ -209,18 +246,19 @@ const errorMsg = t("contact.error");
                 method="POST"
               >
                 <div class="form-group">
-                  <label>{t("contact.label.name")}</label>
-                  <input type="text" name="name" required />
+                  <label for="name">{t("contact.label.name")}</label>
+                  <input type="text" id="name" name="name" required />
                 </div>
 
                 <div class="form-group">
-                  <label>{t("contact.label.email")}</label>
-                  <input type="email" name="email" required />
+                  <label for="email">{t("contact.label.email")}</label>
+                  <input type="email" id="email" name="email" required />
                 </div>
 
                 <div class="form-group">
-                  <label>{t("contact.label.message")}</label>
-                  <textarea name="message" rows="4" required></textarea>
+                  <label for="message">{t("contact.label.message")}</label>
+                  <textarea id="message" name="message" rows="4" required
+                  ></textarea>
                 </div>
 
                 <button type="submit" class="btn-submit">
@@ -236,32 +274,37 @@ const errorMsg = t("contact.error");
     <footer class="main-footer">
       <p>© 2026 Rafael Chicovis. {t("footer.rights")}</p>
     </footer>
-  </body>
-  <script define:vars={{ successMsg, errorMsg }}>
-    const form = document.querySelector(".contact-form");
 
-    if (!!form) {
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
+    <script define:vars={{ successMsg, errorMsg }}>
+      const form = document.querySelector(".contact-form");
 
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: formData,
-          headers: {
-            Accept: "application/json",
-          },
+      if (form) {
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData(form);
+
+          try {
+            const response = await fetch(form.action, {
+              method: "POST",
+              body: formData,
+              headers: {
+                Accept: "application/json",
+              },
+            });
+
+            if (response.ok) {
+              alert(successMsg);
+              form.reset();
+            } else {
+              alert(errorMsg);
+            }
+          } catch (error) {
+            alert(errorMsg);
+          }
         });
-
-        if (response.ok) {
-          alert(successMsg);
-          form.reset();
-        } else {
-          alert(errorMsg);
-        }
-      });
-    }
-  </script>
+      }
+    </script>
+  </body>
 </html>
 
 <style>
@@ -269,7 +312,8 @@ const errorMsg = t("contact.error");
     --bg-dark: #0a0a0a;
     --bg-light: #111111;
     --accent: #ff6b00;
-    --text-dim: #94a3b8;
+    --accent-hover: #e65a00;
+    --text-dim: #cbd5e1; /* Melhorado para contraste A11Y */
     --white: #f8fafc;
     --border: #262626;
   }
@@ -277,9 +321,11 @@ const errorMsg = t("contact.error");
   * {
     box-sizing: border-box;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
     background-color: var(--bg-dark);
     color: var(--text-dim);
@@ -287,6 +333,31 @@ const errorMsg = t("contact.error");
     margin: 0;
     line-height: 1.6;
     overflow-x: hidden;
+  }
+
+  /* ACESSIBILIDADE: Skip Link */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--accent);
+    color: white;
+    padding: 1rem;
+    z-index: 2000;
+    text-decoration: none;
+    transition: top 0.3s;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* ACESSIBILIDADE: Foco visível */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
   }
 
   .content-wrapper {
@@ -309,22 +380,31 @@ const errorMsg = t("contact.error");
     z-index: 1000;
     border-bottom: 1px solid var(--border);
   }
+
   .navbar nav {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
+
   .nav-links {
     display: flex;
     gap: 0.8rem;
   }
+
   .navbar a {
     color: var(--white);
     text-decoration: none;
     font-size: 0.75rem;
     font-weight: 500;
     white-space: nowrap;
+    transition: color 0.2s;
   }
+
+  .navbar a:hover {
+    color: var(--accent);
+  }
+
   .lang-badge {
     background: var(--accent);
     padding: 4px 8px;
@@ -338,12 +418,14 @@ const errorMsg = t("contact.error");
   .hero {
     padding: 10rem 1.5rem 6rem;
   }
+
   .main-title {
     font-size: clamp(2.2rem, 8vw, 5rem);
     margin: 0;
     font-weight: 800;
     line-height: 1.1;
   }
+
   .sub-title {
     font-size: clamp(1.4rem, 5vw, 3.5rem);
     margin-top: 0.5rem;
@@ -351,6 +433,7 @@ const errorMsg = t("contact.error");
     color: var(--white);
     opacity: 0.9;
   }
+
   .description {
     max-width: 580px;
     margin: 2rem 0;
@@ -363,17 +446,20 @@ const errorMsg = t("contact.error");
     align-items: center;
     gap: 1.5rem;
   }
+
   .hero-social-links,
   .contact-social-links {
     display: flex;
     gap: 1.2rem;
   }
+
   .icon-link {
     color: var(--text-dim);
     font-size: 1.5rem;
     transition: 0.2s;
     text-decoration: none;
   }
+
   .icon-link:hover {
     color: var(--accent);
     transform: translateY(-2px);
@@ -387,9 +473,13 @@ const errorMsg = t("contact.error");
     font-weight: bold;
     text-decoration: none;
     font-size: 0.9rem;
+    transition: background 0.2s;
   }
 
-  /* ESTILO DO BOTÃO CV */
+  .btn-primary:hover {
+    background: var(--accent-hover);
+  }
+
   .btn-cv {
     background: transparent;
     border: 1px solid var(--border);
@@ -404,6 +494,7 @@ const errorMsg = t("contact.error");
     gap: 0.5rem;
     transition: 0.2s;
   }
+
   .btn-cv:hover {
     background: var(--border);
     border-color: var(--accent);
@@ -414,6 +505,7 @@ const errorMsg = t("contact.error");
     padding: 5rem 0;
     border-bottom: 1px solid var(--border);
   }
+
   .alternate-section:nth-of-type(even) {
     background-color: var(--bg-light);
   }
@@ -424,11 +516,13 @@ const errorMsg = t("contact.error");
     gap: 1rem;
     margin-bottom: 3rem;
   }
+
   .section-header .number {
     font-family: "Fira Code", monospace;
     color: var(--accent);
     font-size: 1.4rem;
   }
+
   .section-header .title {
     color: var(--white);
     font-size: 1.4rem;
@@ -437,6 +531,7 @@ const errorMsg = t("contact.error");
     display: flex;
     align-items: center;
   }
+
   .section-header .title::after {
     content: "";
     height: 1px;
@@ -452,29 +547,34 @@ const errorMsg = t("contact.error");
     flex-direction: column;
     gap: 2rem;
   }
+
   .exp-card {
     background: var(--bg-dark);
     border: 1px solid var(--border);
     padding: 1.5rem;
     border-radius: 12px;
   }
+
   .exp-date {
     font-family: "Fira Code", monospace;
     color: var(--accent);
     font-size: 0.8rem;
     margin-bottom: 0.5rem;
   }
+
   .exp-content h4 {
     color: var(--white);
     font-size: 1.1rem;
     margin: 0 0 0.5rem;
   }
+
   .tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 1rem;
   }
+
   .tags span {
     background: rgba(255, 107, 0, 0.1);
     color: var(--accent);
@@ -498,11 +598,13 @@ const errorMsg = t("contact.error");
     flex-direction: column;
     gap: 2rem;
   }
+
   .form-container {
     width: 100%;
     display: flex;
     justify-content: center;
   }
+
   .contact-form {
     background: var(--bg-dark);
     padding: 1.5rem;
@@ -511,12 +613,20 @@ const errorMsg = t("contact.error");
     width: 100%;
     max-width: 500px;
   }
+
   .form-group {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
     margin-bottom: 1rem;
   }
+
+  .form-group label {
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
   input,
   textarea {
     background: var(--bg-light);
@@ -526,7 +636,14 @@ const errorMsg = t("contact.error");
     border-radius: 6px;
     width: 100%;
     outline: none;
+    transition: border-color 0.2s;
   }
+
+  input:focus,
+  textarea:focus {
+    border-color: var(--accent);
+  }
+
   .btn-submit {
     background: var(--accent);
     border: none;
@@ -536,15 +653,22 @@ const errorMsg = t("contact.error");
     border-radius: 6px;
     width: 100%;
     cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-submit:hover {
+    background: var(--accent-hover);
   }
 
   .accent {
     color: var(--accent);
   }
+
   .logo {
     font-weight: 800;
     font-size: 1.1rem;
   }
+
   .main-footer {
     padding: 3rem 0;
     text-align: center;
@@ -568,9 +692,7 @@ const errorMsg = t("contact.error");
     .alternate-section {
       padding: 8rem 0;
     }
-    .section-header .number {
-      font-size: 2rem;
-    }
+    .section-header .number,
     .section-header .title {
       font-size: 2rem;
     }
