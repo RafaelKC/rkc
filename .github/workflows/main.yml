@@ -26,7 +26,7 @@ jobs:
             docker build -t portfolio-site .
             docker stop portfolio-container || true
             docker rm portfolio-container || true
-            docker run -d --name portfolio-container -p 8080:80 portfolio-site
+            docker run -d --name portfolio-container --restart always -p 8080:80 portfolio-site
             
             # Limpeza de imagens antigas (crucial para instâncias free)
             docker image prune -f
