@@ -1,5 +1,4 @@
 name: CI/CD Portfolio
-
 on:
   push:
     branches: [ main ]
@@ -15,18 +14,12 @@ jobs:
           username: ${{ secrets.OCI_USER }}
           key: ${{ secrets.OCI_SSH_KEY }}
           script: |
-            # Clone or Pull code
             if [ ! -d "portfolio" ]; then
               git clone https://github.com/RafaelKC/rkc.git portfolio
             fi
             cd portfolio
             git pull origin main
-            
-            # Build e Swap do container
             docker build -t portfolio-site .
-            docker stop portfolio-container || true
-            docker rm portfolio-container || true
-            docker run -d --name portfolio-container --restart always -p 8080:80 portfolio-site
-            
-            # Limpeza de imagens antigas (crucial para instâncias free)
+            docker compose down
+            docker compose up -d
             docker image prune -f

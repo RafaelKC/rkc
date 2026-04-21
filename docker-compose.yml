@@ -1,0 +1,13 @@
+services:
+  portfolio:
+    image: portfolio-site:latest
+    container_name: portfolio-container
+    restart: always
+    networks:
+      web:
+        aliases:
+          - portfolio
+
+networks:
+  web:
+    external: true
