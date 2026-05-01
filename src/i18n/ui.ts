@@ -15,17 +15,17 @@ export const ui = {
     'exp.gestran.desc': 'Atuação no ciclo completo de desenvolvimento de plataforma de gestão de frotas de alta criticidade e disponibilidade.',
     'exp.gestran.point.1': 'Desenvolvi um módulo de gestão de disponibilidade de frota utilizando Angular e .NET, consolidando dados de rastreadores e macros de motoristas em um dashboard de tempo real, o que proporcionou aos clientes 100% de visibilidade sobre a situação atual e localização da frota.',
     'exp.gestran.point.2': 'Desenvolvi um sistema de gestão de conformidade documental para frotas e colaboradores, automatizando o controle de validades e alertas de renovação, o que mitigou riscos jurídicos e operacionais ao garantir visibilidade sobre documentos vencidos ou a vencer.',
-    'exp.gestran.point.3': 'Arquiteturei e desenvolvi um portal de validação de abastecimentos utilizando React e .NET, permitindo a conferência sistemática de lançamentos feitos via aplicativo mobile, o que reduziu divergências de dados e aumentou drasticamente a confiabilidade das informações no sistema.',
+    'exp.gestran.point.3': 'Arquitetei e desenvolvi um portal de validação de abastecimentos utilizando React e .NET, permitindo a conferência sistemática de lançamentos feitos via aplicativo mobile, o que reduziu divergências de dados e aumentou drasticamente a confiabilidade das informações no sistema.',
    
     'exp.viasoft.role': 'Análista de Sistemas Pleno',
     'exp.viasoft.desc': 'Liderança técnica de squad de inovação, entregando ferramentas críticas como sistema de Assinatura Digital, Gestão de Projetos e módulos de IA.',
     'exp.viasoft.point.1': 'Desenvolvi uma plataforma interna para assinatura digital de documentos utilizando Angular e .NET, implementando manipulação avançada de PDFs, o que eliminou a dependência de fornecedores externos e otimizou a gestão documental da companhia.',
-    'exp.viasoft.point.2': 'Arquiteturei e implementei um sistema de gestão de projetos e tarefas de alta disponibilidade para substituir o Jira, suportando o fluxo de trabalho de todos os times de engenharia da empresa e garantindo a continuidade da produção com custo quase zero de licenciamento de software.',
+    'exp.viasoft.point.2': 'Arquitetei e implementei um sistema de gestão de projetos e tarefas de alta disponibilidade para substituir o Jira, suportando o fluxo de trabalho de todos os times de engenharia da empresa e garantindo a continuidade da produção com custo quase zero de licenciamento de software.',
     'exp.viasoft.point.3': 'Realizei o desenvolvimento de um MVP de análise financeira utilizando Python, LangChain e Cube.js, integrando IA para converter consultas em linguagem natural em dashboards dinâmicos com insights preditivos e visualizações complexas em React.',
 
     'exp.homelab.role': 'Engenheiro de Infraestrutura & DevOps (Home Lab)',
     'exp.homelab.desc': 'Pesquisa e implementação de infraestrutura autogerenciada focada em alta disponibilidade e observabilidade híbrida.',
-    'exp.homelab.point.1': 'Arquiteturei uma rede privada híbrida utilizando Tailscale e Cloudflare Tunnels, interconectando servidores locais (On-premise) à Oracle Cloud (OCI) com foco em segurança.',
+    'exp.homelab.point.1': 'Arquitetei uma rede privada híbrida utilizando Tailscale e Cloudflare Tunnels, interconectando servidores locais (On-premise) à Oracle Cloud (OCI) com foco em segurança.',
     'exp.homelab.point.2': 'Implementei uma stack de observabilidade centralizada com Prometheus e Grafana, monitorando métricas de hardware e containers via Node Exporter.',
     'exp.homelab.point.3': 'Gerencio a orquestração de microserviços e automações (n8n, Databases, Uptime Kuma e +) utilizando Docker e Docker Compose, garantindo uptime dos serviços e acesso mesmo fora de casa.',
 

@@ -3,5 +3,4 @@
 User-agent: *
 Allow: /
 
-# Aponta para o seu mapa do site para facilitar a vida do bot
 Sitemap: https://chicovis.dev/sitemap-index.xml
