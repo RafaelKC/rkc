@@ -50,6 +50,22 @@ const errorMsg = t("contact.error");
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme =
+            stored ||
+            (window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+
     <meta
       name="google-site-verification"
       content="bbHTKo9D5OlC77Eq_q35Fp5X99EBExENSoekYZNB8do"
@@ -96,6 +112,14 @@ const errorMsg = t("contact.error");
           <a href="#education">{t("nav.education")}</a>
           <a href="#contact">{t("nav.contact")}</a>
         </div>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-label={t("theme.toggle")}
+        >
+          <i class="ti ti-sun" aria-hidden="true"></i>
+        </button>
         <a
           href={toggleHref}
           class="lang-badge"
@@ -109,7 +133,17 @@ const errorMsg = t("contact.error");
     <main id="main-content">
       <section id="top" class="hero content-wrapper">
         <p class="mono-text">{t("hero.greeting")}</p>
-        <h1 class="main-title accent">Rafael Chicovis</h1>
+        <h1 class="main-title accent">
+          <img
+            src="/profile.jpg"
+            alt="Rafael Chicovis"
+            class="name-avatar"
+            width="96"
+            height="96"
+            loading="eager"
+          />
+          <span>Rafael Chicovis</span>
+        </h1>
         <h2 class="sub-title">{t("hero.role")}</h2>
         <p class="description">{t("hero.description")}</p>
 
@@ -374,11 +408,36 @@ const errorMsg = t("contact.error");
         });
       }
     </script>
+
+    <script is:inline>
+      (function () {
+        const toggle = document.getElementById("theme-toggle");
+        if (!toggle) return;
+        const icon = toggle.querySelector("i");
+        const syncIcon = () => {
+          const isLight =
+            document.documentElement.getAttribute("data-theme") === "light";
+          icon.className = isLight ? "ti ti-moon" : "ti ti-sun";
+        };
+        syncIcon();
+        toggle.addEventListener("click", () => {
+          const isLight =
+            document.documentElement.getAttribute("data-theme") === "light";
+          const next = isLight ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", next);
+          try {
+            localStorage.setItem("theme", next);
+          } catch (e) {}
+          syncIcon();
+        });
+      })();
+    </script>
   </body>
 </html>
 
 <style>
-  :root {
+  :root,
+  :root[data-theme="dark"] {
     --bg-dark: #0a0a0a;
     --bg-light: #111111;
     --accent: #ff6b00;
@@ -386,6 +445,18 @@ const errorMsg = t("contact.error");
     --text-dim: #cbd5e1; /* Melhorado para contraste A11Y */
     --white: #f8fafc;
     --border: #262626;
+    --navbar-bg: rgba(10, 10, 10, 0.95);
+  }
+
+  :root[data-theme="light"] {
+    --bg-dark: #ffffff;
+    --bg-light: #f4f4f5;
+    --accent: #e65a00;
+    --accent-hover: #cc5000;
+    --text-dim: #3f3f46;
+    --white: #18181b;
+    --border: #d4d4d8;
+    --navbar-bg: rgba(255, 255, 255, 0.95);
   }
 
   * {
@@ -403,6 +474,32 @@ const errorMsg = t("contact.error");
     margin: 0;
     line-height: 1.6;
     overflow-x: hidden;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--white);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  .theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
   }
 
   .skip-link {
@@ -441,7 +538,7 @@ const errorMsg = t("contact.error");
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(10, 10, 10, 0.95);
+    background: var(--navbar-bg);
     backdrop-filter: blur(12px);
     z-index: 1000;
     border-bottom: 1px solid var(--border);
@@ -489,6 +586,19 @@ const errorMsg = t("contact.error");
     margin: 0;
     font-weight: 800;
     line-height: 1.1;
+    display: flex;
+    align-items: center;
+    gap: 0.35em;
+  }
+
+  .name-avatar {
+    width: 0.9em;
+    height: 0.9em;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 47% 30%;
+    flex-shrink: 0;
+    border: 2px solid var(--accent);
   }
 
   .sub-title {
@@ -522,7 +632,7 @@ const errorMsg = t("contact.error");
   .tag-container .tag {
     padding: 0.1rem 0.4rem;
     background: var(--accent);
-    color: var(--white);
+    color: #f8fafc;
     border-radius: 4rem;
     min-width: fit-content;
   }
@@ -736,7 +846,7 @@ const errorMsg = t("contact.error");
   textarea {
     background: var(--bg-light);
     border: 1px solid var(--border);
-    color: white;
+    color: var(--white);
     padding: 0.8rem;
     border-radius: 6px;
     width: 100%;

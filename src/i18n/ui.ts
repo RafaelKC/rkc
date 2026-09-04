@@ -46,7 +46,8 @@ export const ui = {
     'visitar.github': 'Visitar meu GitHub',
     'visitar.linkedin': 'Visitar meu LinkedIn',
     'visitar.email': 'Enviar um e-mail',
-    
+    'theme.toggle': 'Alternar tema claro/escuro',
+
     'link.linkedin': 'https://www.linkedin.com/in/rafael-chicovis',
     'link.github': 'https://github.com/RafaelKC',
     'link.email': 'mailto:contato.rafael.chicovis@gmail.com',
@@ -99,6 +100,7 @@ export const ui = {
     'visitar.github': 'Visit my GitHub',
     'visitar.linkedin': 'Visit my LinkedIn',
     'visitar.email': 'Send an e-mail',
+    'theme.toggle': 'Toggle light/dark theme',
 
     'link.linkedin': 'https://www.linkedin.com/in/rafael-chicovis/?locale=en_US',
     'link.github': 'https://github.com/RafaelKC',
