@@ -14,6 +14,39 @@ const ogImage = `${siteUrl}/og-image.jpg`;
 
 const successMsg = t("contact.success");
 const errorMsg = t("contact.error");
+
+import portfolioItems from "../data/portfolio.json";
+
+const shotModules = import.meta.glob(
+  "/public/portfolio/**/*.{png,jpg,jpeg,webp,avif}",
+  { eager: true, query: "?url", import: "default" },
+);
+
+const shotsFor = (id: string) =>
+  Object.keys(shotModules)
+    .filter((p) => p.includes(`/portfolio/${id}/`))
+    .sort()
+    .map((p) => p.replace("/public", ""));
+
+type PortfolioItem = {
+  id: string;
+  type: "personal" | "client";
+  company: string | null;
+  year: string;
+  logo: string;
+  demo: string;
+  repos: { label: string; url: string }[];
+  tech: string[];
+  name: Record<string, string>;
+  tagline: Record<string, string>;
+  description: Record<string, string>;
+  highlights: Record<string, string[]>;
+};
+
+const portfolio = (portfolioItems as PortfolioItem[]).map((item) => ({
+  ...item,
+  shots: shotsFor(item.id),
+}));
 ---
 
 <!doctype html>
@@ -109,6 +142,7 @@ const errorMsg = t("contact.error");
         <div class="nav-links">
           <a href="#top">{t("nav.home")}</a>
           <a href="#experience">{t("nav.experience")}</a>
+          <a href="#portfolio">{t("nav.portfolio")}</a>
           <a href="#education">{t("nav.education")}</a>
           <a href="#contact">{t("nav.contact")}</a>
         </div>
@@ -286,10 +320,142 @@ const errorMsg = t("contact.error");
         </div>
       </section>
 
-      <section id="education" class="alternate-section">
+      <section id="portfolio" class="alternate-section">
         <div class="content-wrapper">
           <h3 class="section-header">
             <span class="number">02.</span>
+            <span class="title">{t("portfolio.title")}</span>
+          </h3>
+          <div class="portfolio-container">
+            {
+              portfolio.map((project) => (
+                <article class="portfolio-card">
+                  <div class="portfolio-head">
+                    <img
+                      src={project.logo}
+                      alt={`${project.name[lang]} logo`}
+                      class="portfolio-logo"
+                      width="48"
+                      height="48"
+                      loading="lazy"
+                    />
+                    <div class="portfolio-heading">
+                      <h4>
+                        {project.name[lang]}
+                        {project.company && (
+                          <span class="accent"> @ {project.company}</span>
+                        )}
+                      </h4>
+                      <div class="portfolio-meta">
+                        <span class="portfolio-status">
+                          {project.type === "client"
+                            ? t("portfolio.status.client")
+                            : t("portfolio.status.paused")}
+                        </span>
+                        <span class="portfolio-year">{project.year}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {project.shots.length > 0 ? (
+                    <div
+                      class="carousel"
+                      data-carousel
+                      aria-roledescription="carousel"
+                      aria-label={project.name[lang]}
+                    >
+                      <div class="carousel-track" data-carousel-track>
+                        {project.shots.map((src, i) => (
+                          <img
+                            src={src}
+                            alt={`${project.name[lang]} — ${i + 1}`}
+                            class="carousel-slide"
+                            loading="lazy"
+                          />
+                        ))}
+                      </div>
+                      {project.shots.length > 1 && (
+                        <div class="carousel-nav">
+                          <button
+                            type="button"
+                            class="carousel-btn"
+                            data-carousel-prev
+                            aria-label={t("portfolio.prev")}
+                          >
+                            <i class="ti ti-chevron-left" aria-hidden="true" />
+                          </button>
+                          <button
+                            type="button"
+                            class="carousel-btn"
+                            data-carousel-next
+                            aria-label={t("portfolio.next")}
+                          >
+                            <i class="ti ti-chevron-right" aria-hidden="true" />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <p class="portfolio-noshots">{t("portfolio.noShots")}</p>
+                  )}
+
+                  <p class="portfolio-tagline">{project.tagline[lang]}</p>
+                  <p class="portfolio-desc">{project.description[lang]}</p>
+
+                  <p class="portfolio-highlights-label">
+                    {t("portfolio.highlights")}
+                  </p>
+                  <ul class="portfolio-highlights">
+                    {project.highlights[lang].map((h) => (
+                      <li>{h}</li>
+                    ))}
+                  </ul>
+
+                  <div class="tags">
+                    {project.tech.map((tech) => (
+                      <span>{tech}</span>
+                    ))}
+                  </div>
+
+                  {project.type === "client" && (
+                    <p class="portfolio-note">{t("portfolio.proprietary")}</p>
+                  )}
+
+                  <div class="portfolio-actions">
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="btn-primary"
+                    >
+                      {project.type === "client"
+                        ? t("portfolio.caseLink")
+                        : t("portfolio.demo")}{" "}
+                      →
+                    </a>
+                    {project.repos.map((repo) => (
+                      <a
+                        href={repo.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-cv"
+                      >
+                        <i class="ti ti-brand-github" aria-hidden="true" />
+                        {repo.label}
+                      </a>
+                    ))}
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="alternate-section">
+        <div class="content-wrapper">
+          <h3 class="section-header">
+            <span class="number">03.</span>
             <span class="title">{t("edu.title")}</span>
           </h3>
           <div class="grid-cards">
@@ -310,7 +476,7 @@ const errorMsg = t("contact.error");
       <section id="contact" class="alternate-section">
         <div class="content-wrapper">
           <h3 class="section-header">
-            <span class="number">03.</span>
+            <span class="number">04.</span>
             <span class="title">{t("nav.contact")}</span>
           </h3>
           <div class="contact-layout">
@@ -429,6 +595,29 @@ const errorMsg = t("contact.error");
             localStorage.setItem("theme", next);
           } catch (e) {}
           syncIcon();
+        });
+      })();
+    </script>
+
+    <script is:inline>
+      (function () {
+        document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+          const track = carousel.querySelector("[data-carousel-track]");
+          const prev = carousel.querySelector("[data-carousel-prev]");
+          const next = carousel.querySelector("[data-carousel-next]");
+          if (!track) return;
+          const step = () => {
+            const slide = track.querySelector(".carousel-slide");
+            return slide ? slide.getBoundingClientRect().width + 12 : track.clientWidth;
+          };
+          prev &&
+            prev.addEventListener("click", () => {
+              track.scrollBy({ left: -step(), behavior: "smooth" });
+            });
+          next &&
+            next.addEventListener("click", () => {
+              track.scrollBy({ left: step(), behavior: "smooth" });
+            });
         });
       })();
     </script>
@@ -808,6 +997,185 @@ const errorMsg = t("contact.error");
     border-radius: 12px;
   }
 
+  /* PORTFOLIO */
+  .portfolio-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .portfolio-card {
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .portfolio-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .portfolio-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    object-fit: contain;
+    background: var(--bg-light);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .portfolio-heading h4 {
+    color: var(--white);
+    font-size: 1.2rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .portfolio-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Fira Code", monospace;
+    font-size: 0.7rem;
+  }
+
+  .portfolio-status {
+    background: rgba(255, 107, 0, 0.12);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 2px 8px;
+    border-radius: 4rem;
+    font-weight: 600;
+  }
+
+  .portfolio-year {
+    color: var(--accent);
+  }
+
+  .carousel {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    border-radius: 10px;
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: center;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--bg-light);
+  }
+
+  .carousel-nav {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+    pointer-events: none;
+  }
+
+  .carousel-btn {
+    pointer-events: auto;
+    background: var(--navbar-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    color: var(--white);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  .carousel-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .portfolio-noshots {
+    background: var(--bg-light);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    font-family: "Fira Code", monospace;
+    font-size: 0.8rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .portfolio-note {
+    border-left: 2px solid var(--accent);
+    background: rgba(255, 107, 0, 0.06);
+    padding: 0.6rem 0.9rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.8rem;
+    margin: 0 0 1.25rem;
+  }
+
+  .portfolio-tagline {
+    color: var(--white);
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+  }
+
+  .portfolio-desc {
+    font-size: 0.95rem;
+    margin: 0 0 1.25rem;
+  }
+
+  .portfolio-highlights-label {
+    color: var(--white);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.5rem;
+  }
+
+  .portfolio-highlights {
+    margin: 0 0 1.25rem;
+    padding-left: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .portfolio-highlights li {
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+
+  .portfolio-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
   .contact-layout {
     display: flex;
     flex-direction: column;
@@ -915,6 +1283,9 @@ const errorMsg = t("contact.error");
       gap: 3rem;
     }
     .exp-card {
+      padding: 2.5rem;
+    }
+    .portfolio-card {
       padding: 2.5rem;
     }
     .exp-content h4 {

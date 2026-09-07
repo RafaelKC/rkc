@@ -1,0 +1,98 @@
+[
+  {
+    "id": "fin-app",
+    "type": "personal",
+    "company": null,
+    "year": "2024 — 2025",
+    "logo": "https://fin.chicovis.dev/icons/fin.png",
+    "demo": "https://fin.chicovis.dev",
+    "repos": [
+      { "label": "Frontend", "url": "https://github.com/AppFin/fin-frontend" },
+      { "label": "Backend", "url": "https://github.com/AppFin/fin-backend" }
+    ],
+    "tech": [
+      ".NET 9",
+      "Clean Architecture",
+      "Angular 20",
+      "PrimeNG",
+      "PostgreSQL",
+      "Redis",
+      "MongoDB",
+      "Hangfire",
+      "SignalR",
+      "JWT + OAuth Google",
+      "Docker",
+      "GitHub Actions"
+    ],
+    "name": {
+      "pt": "Fin App",
+      "en": "Fin App"
+    },
+    "tagline": {
+      "pt": "Sistema full-stack de controle financeiro pessoal — carteiras, cartões, cobranças parceladas e divisão de despesas — em .NET 9 + Angular 20, multi-tenant, com deploy containerizado próprio e CI/CD.",
+      "en": "Full-stack personal finance system — wallets, credit cards, installment charges and expense splitting — built with .NET 9 + Angular 20, multi-tenant, with self-hosted containerized deploy and CI/CD."
+    },
+    "description": {
+      "pt": "Aplicação full-stack de gestão financeira pessoal: carteiras, títulos, cartões de crédito com cobranças parceladas, categorização, instituições financeiras e divisão de despesas entre pessoas. O backend segue Clean Architecture em .NET 9 (multi-tenant, PostgreSQL, Redis, jobs em background com Hangfire, notificações em tempo real via SignalR) e o frontend é Angular 20 com componentes standalone e PrimeNG. A versão de demonstração roda em containers Docker próprios, com CI/CD via GitHub Actions e proxy reverso na nuvem — sem depender de PaaS de terceiros para funcionar.",
+      "en": "Full-stack personal finance management app: wallets, bills, credit cards with installment charges, categorization, financial institutions and expense splitting between people. The backend follows Clean Architecture in .NET 9 (multi-tenant, PostgreSQL, Redis, background jobs with Hangfire, real-time notifications via SignalR) and the frontend is Angular 20 with standalone components and PrimeNG. The demo runs on self-hosted Docker containers, with CI/CD via GitHub Actions and a cloud reverse proxy — no third-party PaaS required to run."
+    },
+    "highlights": {
+      "pt": [
+        "Backend .NET 9 em Clean Architecture (Domain / Application / Infrastructure / Api), multi-tenant.",
+        "PostgreSQL + Redis + MongoDB, jobs recorrentes com Hangfire, notificações real-time via SignalR/WebSocket.",
+        "Frontend Angular 20 (componentes standalone, PrimeNG, i18n em 3 idiomas).",
+        "Autenticação JWT + OAuth Google e criptografia de dados sensíveis.",
+        "Deploy Docker próprio (sem PaaS), pipeline CI/CD via GitHub Actions, proxy reverso + Cloudflare.",
+        "Modo demo público pensado para segurança: sem envio de e-mail real e limpeza automática diária dos dados de teste."
+      ],
+      "en": [
+        "Backend .NET 9 in Clean Architecture (Domain / Application / Infrastructure / Api), multi-tenant.",
+        "PostgreSQL + Redis + MongoDB, recurring jobs with Hangfire, real-time notifications via SignalR/WebSocket.",
+        "Angular 20 frontend (standalone components, PrimeNG, i18n in 3 languages).",
+        "JWT + Google OAuth authentication and encryption of sensitive data.",
+        "Self-hosted Docker deploy (no PaaS), CI/CD pipeline via GitHub Actions, reverse proxy + Cloudflare.",
+        "Public demo mode designed with security in mind: no real e-mail sending and automatic daily cleanup of test data."
+      ]
+    }
+  },
+  {
+    "id": "disponibilidade-de-frota",
+    "type": "client",
+    "company": "Gestran",
+    "year": "2025",
+    "logo": "https://cdn.prod.website-files.com/6671bbb3b78cddfd9ebe44f5/669d583cac9c5ee9b6e7bc8a_favicon.png",
+    "demo": "https://www.gestran.com.br/disponibilidade-de-frota",
+    "repos": [],
+    "tech": [
+      ".NET 8",
+      "Angular 18",
+      "Entity Framework",
+      "Integração com APIs externas",
+      "Mapas / geolocalização"
+    ],
+    "name": {
+      "pt": "Disponibilidade de Frota",
+      "en": "Fleet Availability"
+    },
+    "tagline": {
+      "pt": "Módulo de visibilidade de frota em tempo real na plataforma da Gestran — posição atual dos veículos no mapa, status operacional ao vivo e controle de ocorrências.",
+      "en": "Real-time fleet visibility module on Gestran's platform — current vehicle position on the map, live operational status and incident tracking."
+    },
+    "description": {
+      "pt": "Módulo da plataforma de gestão de frotas da Gestran que consolida dados de rastreadores e integrações externas para dar aos clientes visibilidade total da operação: exibe a posição atual de cada veículo no mapa, registra o status do veículo em tempo real e controla ocorrências ao longo da viagem. Fui o desenvolvedor responsável pelo código (backend .NET 8 + frontend Angular 18, EF e integração com APIs externas), incluindo as telas de mapa.",
+      "en": "Module of Gestran's fleet management platform that consolidates tracker data and external integrations to give customers full operational visibility: it shows each vehicle's current position on the map, records vehicle status in real time and tracks incidents during the trip. I was the developer responsible for the code (backend .NET 8 + Angular 18 frontend, EF and external API integration), including the map screens."
+    },
+    "highlights": {
+      "pt": [
+        "Backend .NET 8 com Entity Framework e integração com APIs externas de rastreamento.",
+        "Frontend Angular 18, incluindo as telas de mapa com posição dos veículos em tempo real.",
+        "Registro de status operacional do veículo ao vivo e histórico de ocorrências da viagem."
+      ],
+      "en": [
+        "Backend .NET 8 with Entity Framework and integration with external tracking APIs.",
+        "Angular 18 frontend, including the map screens with real-time vehicle position.",
+        "Live operational vehicle-status recording and trip incident history."
+      ]
+    }
+  }
+]
