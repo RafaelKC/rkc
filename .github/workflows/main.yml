@@ -1,7 +1,7 @@
 name: CI/CD Portfolio
+# Automatic deploy on push is OFF: building the image on the VM exhausts it.
+# Deploy by hand on the server, or run this workflow manually (Actions > Run workflow).
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:

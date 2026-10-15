@@ -5,6 +5,7 @@ const t = useTranslations(lang);
 
 const toggleLang = lang === "pt" ? "en" : "pt";
 const toggleHref = `/${toggleLang}/`;
+const blogHref = `https://rndm.chicovis.dev/${lang}/`;
 
 // SEO Meta Data
 const title = `Rafael Chicovis | ${t("hero.role")}`;
@@ -84,9 +85,25 @@ const portfolio = (portfolioItems as PortfolioItem[]).map((item) => ({
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <script is:inline>
+      // Theme and language live in cookies shared with the blog (rndm.chicovis.dev).
+      window.setSharedCookie = function (name, value) {
+        var host = location.hostname;
+        var shared = host === "chicovis.dev" || host.endsWith(".chicovis.dev");
+        var secure = location.protocol === "https:" ? "; Secure" : "";
+        if (shared) {
+          // Drop a legacy host-only cookie of the same name so it cannot shadow the shared one.
+          document.cookie = name + "=; Path=/; Max-Age=0; SameSite=Lax" + secure;
+        }
+        document.cookie =
+          name + "=" + encodeURIComponent(value) +
+          "; Path=/; Max-Age=31536000; SameSite=Lax" +
+          (shared ? "; Domain=.chicovis.dev" : "") + secure;
+      };
+
       (function () {
         try {
-          var stored = localStorage.getItem("theme");
+          var match = document.cookie.match(/(?:^|; )theme=(dark|light)/);
+          var stored = match ? match[1] : localStorage.getItem("theme");
           var theme =
             stored ||
             (window.matchMedia("(prefers-color-scheme: light)").matches
@@ -145,6 +162,15 @@ const portfolio = (portfolioItems as PortfolioItem[]).map((item) => ({
           <a href="#portfolio">{t("nav.portfolio")}</a>
           <a href="#education">{t("nav.education")}</a>
           <a href="#contact">{t("nav.contact")}</a>
+          <a
+            href={blogHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t("nav.blog.label")}
+          >
+            {t("nav.blog")}
+            <i class="ti ti-arrow-up-right" aria-hidden="true"></i>
+          </a>
         </div>
         <button
           id="theme-toggle"
@@ -157,6 +183,7 @@ const portfolio = (portfolioItems as PortfolioItem[]).map((item) => ({
         <a
           href={toggleHref}
           class="lang-badge"
+          data-lang={toggleLang}
           aria-label={`Mudar idioma para ${toggleLang.toUpperCase()}`}
         >
           {toggleLang.toUpperCase()}
@@ -542,6 +569,7 @@ const portfolio = (portfolioItems as PortfolioItem[]).map((item) => ({
     </main>
 
     <footer class="main-footer">
+      <p>{t("footer.location")}</p>
       <p>© 2026 Rafael Chicovis. {t("footer.rights")}</p>
     </footer>
 
@@ -586,14 +614,18 @@ const portfolio = (portfolioItems as PortfolioItem[]).map((item) => ({
           icon.className = isLight ? "ti ti-moon" : "ti ti-sun";
         };
         syncIcon();
+        const badge = document.querySelector(".lang-badge");
+        if (badge) {
+          badge.addEventListener("click", () => {
+            window.setSharedCookie("lang", badge.getAttribute("data-lang"));
+          });
+        }
         toggle.addEventListener("click", () => {
           const isLight =
             document.documentElement.getAttribute("data-theme") === "light";
           const next = isLight ? "dark" : "light";
           document.documentElement.setAttribute("data-theme", next);
-          try {
-            localStorage.setItem("theme", next);
-          } catch (e) {}
+          window.setSharedCookie("theme", next);
           syncIcon();
         });
       })();
@@ -1252,6 +1284,14 @@ const portfolio = (portfolioItems as PortfolioItem[]).map((item) => ({
     font-size: 1.1rem;
   }
 
+  .main-footer p {
+    margin: 0;
+  }
+
+  .main-footer p + p {
+    margin-top: 0.25rem;
+  }
+
   .main-footer {
     padding: 3rem 0;
     text-align: center;
@@ -1313,10 +1353,13 @@ const portfolio = (portfolioItems as PortfolioItem[]).map((item) => ({
     }
     .navbar nav {
       width: 100%;
+      flex-wrap: wrap;
       justify-content: center;
     }
     .nav-links {
-      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 1rem;
     }
   }
 </style>
